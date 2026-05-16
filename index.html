@@ -3,53 +3,607 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Lot Electronics — Curated Consumer Electronics & Smart Home Gear</title>
-<meta name="description" content="Hand-picked consumer electronics, smart home devices, and gadgets at lot pricing. Honest reviews and bulk deals.">
-<meta property="og:title" content="Smart Lot Electronics — Curated Consumer Electronics & Smart Home Gear">
-<meta property="og:description" content="Hand-picked consumer electronics, smart home devices, and gadgets at lot pricing. Honest reviews and bulk deals.">
+<title>Smart Lot Electronics — Honest Consumer Electronics, Tested in Real Homes</title>
+<meta name="description" content="Hand-picked smart home gear, audio, and everyday electronics at lot pricing. Independently tested for 90 days. No affiliate hype — just gear that lasts.">
+<meta name="theme-color" content="#0B0B0D">
+<link rel="canonical" href="https://smartlotelectronics.com/">
+<meta property="og:title" content="Smart Lot Electronics — Honest Gear, Lot Pricing">
+<meta property="og:description" content="Tested-in-home electronics with a 90-day warranty and honest reviews. Lot pricing for resellers, schools, and offices.">
 <meta property="og:url" content="https://smartlotelectronics.com/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Smart Lot Electronics — Curated Consumer Electronics & Smart Home Gear">
-<meta name="twitter:description" content="Hand-picked consumer electronics, smart home devices, and gadgets at lot pricing. Honest reviews and bulk deals.">
-<link rel="canonical" href="https://smartlotelectronics.com/">
-<style>
-:root { --accent: #059669; }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1a1a1a; background: #fafafa; }
-.hero { background: linear-gradient(135deg, var(--accent) 0%, #1a1a1a 100%); color: #fff; padding: 6rem 1.5rem 5rem; text-align: center; }
-.hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; }
-.hero p { font-size: 1.25rem; max-width: 640px; margin: 0 auto 2rem; opacity: 0.92; }
-.cta { display: inline-block; background: #fff; color: var(--accent); padding: 1rem 2rem; border-radius: 8px; font-weight: 700; text-decoration: none; transition: transform 0.15s; }
-.cta:hover { transform: translateY(-2px); }
-.container { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
-.services { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.service { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.service h3 { color: var(--accent); margin-bottom: 0.75rem; font-size: 1.25rem; }
-h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; }
-footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 2rem 1.5rem; font-size: 0.9rem; }
-footer a { color: var(--accent); text-decoration: none; }
-</style>
+<meta name="twitter:title" content="Smart Lot Electronics — Honest Gear, Lot Pricing">
+<meta name="twitter:description" content="Tested-in-home electronics with a 90-day warranty and honest reviews.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-<header class="hero">
-<h1>Consumer Electronics At Lot Pricing</h1>
-<p>Hand-picked smart home gear, audio equipment, and everyday electronics — sold at lot pricing with honest reviews instead of affiliate hype.</p>
-<a href="#services" class="cta">See What We Offer</a>
+
+<!-- =============== NAV =============== -->
+<header class="nav" role="banner">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Smart Lot Electronics home">
+      <span class="brand-mark" aria-hidden="true">s</span>
+      <span class="brand-name">Smart Lot <span>/ electronics</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html" class="is-active">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="guides.html">Guides</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn" data-open-cart aria-label="Open cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 4h2l2.5 12h11l2-9H7"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+        <span class="count" data-cart-count style="display:none">0</span>
+      </button>
+      <button class="icon-btn nav-burger" data-burger aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </div>
 </header>
-<main class="container" id="services">
-<h2>What Smart Lot Electronics Offers</h2>
-<div class="services">
-<div class="service"><h3>Smart Home</h3><p>Hubs, sensors, lighting, locks, and cameras tested in real homes. We report battery life and reliability after 90 days.</p></div>
-<div class="service"><h3>Audio Gear</h3><p>Headphones, soundbars, and portable speakers ranked by what they actually sound like, not what the marketing says.</p></div>
-<div class="service"><h3>Mobile Accessories</h3><p>Cases, chargers, cables, and stands selected for durability — we replace anything that fails within a year.</p></div>
-<div class="service"><h3>Refurbished Lots</h3><p>Vetted refurbished electronics with 90-day warranty. Big savings, real testing, no surprises.</p></div>
-<div class="service"><h3>Bulk Pricing</h3><p>Pallet and lot pricing for resellers, schools, and offices outfitting multiple workstations at once.</p></div>
-<div class="service"><h3>Buying Guides</h3><p>Short, jargon-free buying guides that tell you what actually matters in each category and which features are marketing fluff.</p></div>
+
+<!-- Mobile menu -->
+<div class="mobile-panel" data-mobile-panel>
+  <button class="icon-btn close" data-mobile-close aria-label="Close menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="guides.html">Guides</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
 </div>
+
+<main>
+
+<!-- =============== HERO =============== -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-grid">
+      <div class="reveal">
+        <span class="eyebrow">Issue №07 · Spring catalog 2026</span>
+        <h1 class="h-display" style="margin: 1.25rem 0 1.5rem;">
+          Electronics<br>
+          worth <em>actually</em><br>
+          <span class="underline">keeping.</span>
+        </h1>
+        <p class="lede">
+          Smart home gear, audio, and everyday electronics — selected one lot at a time,
+          tested in real homes for ninety days, and sold without the affiliate-marketing theatre.
+        </p>
+        <div class="hero-cta">
+          <a href="shop.html" class="btn btn-primary">
+            Shop the catalog
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="guides.html" class="btn btn-ghost">Read the buying guides</a>
+        </div>
+      </div>
+      <aside class="hero-meta reveal d-2">
+        <div>
+          <span class="eyebrow">Returns</span>
+          <p style="margin-top:0.4rem">Ninety-day no-questions returns on everything we ship. If we wouldn't keep it ourselves, we'll take it back.</p>
+        </div>
+        <div>
+          <span class="eyebrow">Provenance</span>
+          <p style="margin-top:0.4rem">Every lot lists its source, condition grade, and the number of units we kept for our own homes.</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="hero-strip reveal d-3">
+      <div><div class="stat">1,284</div><span class="label">Devices tested in-home</span></div>
+      <div><div class="stat">90 days</div><span class="label">Average burn-in before listing</span></div>
+      <div><div class="stat">$0</div><span class="label">Affiliate commissions taken</span></div>
+      <div><div class="stat">4.86 ★</div><span class="label">Across 3,200+ verified buyers</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== MARQUEE =============== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Tested in real homes <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg></span>
+    <span>Lot pricing <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg></span>
+    <span>Honest reviews <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg></span>
+    <span>90-day returns <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg></span>
+    <span>Resellers welcome <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg></span>
+    <span>Tested in real homes <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg></span>
+    <span>Lot pricing <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg></span>
+    <span>Honest reviews <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg></span>
+    <span>90-day returns <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg></span>
+    <span>Resellers welcome <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg></span>
+  </div>
+</div>
+
+<!-- =============== BENTO CATEGORIES =============== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="row-between">
+        <div>
+          <span class="eyebrow">The Catalog</span>
+          <h2 class="h-1" style="margin-top:0.6rem">Five aisles, no filler.</h2>
+        </div>
+        <p>We don't carry forty-seven brands of USB cable. We carry the two we'd actually use ourselves, and we'll tell you which one is better for what.</p>
+      </div>
+    </div>
+
+    <div class="bento reveal">
+      <a href="shop.html#smart-home" class="bento-tile col-4 row-2 lime">
+        <div>
+          <span class="num">01 / Smart home</span>
+          <h3 style="margin-top:0.9rem">Hubs, sensors, locks, and cameras that just work — and keep working.</h3>
+        </div>
+        <p>Matter-ready hardware tested across iOS, Android, and Home Assistant. Battery life reported after 90 days, not 9.</p>
+        <span class="more">Explore smart home
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+        <svg class="deco" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="40" y="40" width="120" height="120" rx="16"/><circle cx="100" cy="100" r="36"/><circle cx="100" cy="100" r="6" fill="currentColor"/>
+        </svg>
+      </a>
+
+      <a href="shop.html#audio" class="bento-tile col-2">
+        <div><span class="num">02 / Audio</span><h3 style="margin-top:0.6rem">Headphones &amp; speakers ranked by sound, not specs.</h3></div>
+        <span class="more">Listen → </span>
+      </a>
+
+      <a href="shop.html#mobile" class="bento-tile col-2 paper">
+        <div><span class="num">03 / Mobile</span><h3 style="margin-top:0.6rem">Cases, chargers, cables. Replaced if they fail in a year.</h3></div>
+        <span class="more">Browse →</span>
+      </a>
+
+      <a href="shop.html#refurb" class="bento-tile col-2 rust">
+        <div><span class="num">04 / Refurbished</span><h3 style="margin-top:0.6rem">Vetted lots with a 90-day warranty.</h3></div>
+        <span class="more">See lots →</span>
+      </a>
+
+      <a href="shop.html#bulk" class="bento-tile col-4 teal">
+        <div><span class="num">05 / Bulk &amp; pallet</span><h3 style="margin-top:0.6rem">Pricing for resellers, schools, and offices outfitting at scale.</h3></div>
+        <span class="more">Request a quote →</span>
+      </a>
+
+      <a href="guides.html" class="bento-tile col-6">
+        <div><span class="num">+ / Buying guides</span><h3 style="margin-top:0.6rem">Short, jargon-free guides. What actually matters, what doesn't, and how to spot the marketing fluff.</h3></div>
+        <span class="more">Read all 22 guides →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FEATURED RAIL =============== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="row-between">
+        <div>
+          <span class="eyebrow">This Month's Picks</span>
+          <h2 class="h-1" style="margin-top:0.6rem">What we'd put in our own homes — today.</h2>
+        </div>
+        <a href="shop.html" class="btn btn-ghost">View all 84 products
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap rail-wrap">
+    <div class="rail reveal">
+
+      <article class="product">
+        <div class="product-media">
+          <span class="product-badge">Editor's pick</span>
+          <svg viewBox="0 0 200 200" fill="none" stroke="#0B0B0D" stroke-width="1.4">
+            <rect x="40" y="40" width="120" height="120" rx="20"/>
+            <circle cx="100" cy="100" r="38"/>
+            <circle cx="100" cy="100" r="6" fill="#0B0B0D"/>
+            <path d="M100 40v20M100 140v20M40 100h20M140 100h20"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Smart home / Hub</span>
+          <h3 class="product-title">Aurora Hub Pro</h3>
+          <p style="font-size:0.9rem;color:var(--mute)">Matter + Zigbee + Thread. Local control, no cloud lock-in.</p>
+          <div class="product-foot">
+            <div class="product-price">$129<small>USD</small></div>
+            <button class="add" data-add-cart data-id="aurora-hub" data-title="Aurora Hub Pro" data-cat="Smart home" data-price="129" data-icon="box">Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="product-media">
+          <svg viewBox="0 0 200 200" fill="none" stroke="#0B0B0D" stroke-width="1.4">
+            <rect x="60" y="20" width="80" height="160" rx="14"/>
+            <circle cx="100" cy="120" r="28"/>
+            <circle cx="100" cy="50" r="6"/>
+            <path d="M82 120a18 18 0 1036 0 18 18 0 10-36 0"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Audio / Headphones</span>
+          <h3 class="product-title">Apex Studio Over-Ear</h3>
+          <p style="font-size:0.9rem;color:var(--mute)">38-hour battery, flat response. The pair we use to test everything else.</p>
+          <div class="product-foot">
+            <div class="product-price">$179<small>USD</small></div>
+            <button class="add" data-add-cart data-id="apex-studio" data-title="Apex Studio Over-Ear" data-cat="Audio" data-price="179" data-icon="speaker">Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="product-media">
+          <span class="product-badge dark">New</span>
+          <svg viewBox="0 0 200 200" fill="none" stroke="#0B0B0D" stroke-width="1.4">
+            <path d="M30 80h140v50H30z"/>
+            <path d="M30 80l20-30h100l20 30"/>
+            <circle cx="60" cy="105" r="10"/>
+            <circle cx="140" cy="105" r="10"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Audio / Soundbar</span>
+          <h3 class="product-title">Tide Soundbar 3.1</h3>
+          <p style="font-size:0.9rem;color:var(--mute)">Real dialogue mode that actually does something. HDMI eARC.</p>
+          <div class="product-foot">
+            <div class="product-price">$249<small>USD</small></div>
+            <button class="add" data-add-cart data-id="tide-bar" data-title="Tide Soundbar 3.1" data-cat="Audio" data-price="249" data-icon="speaker">Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="product-media">
+          <svg viewBox="0 0 200 200" fill="none" stroke="#0B0B0D" stroke-width="1.4">
+            <rect x="40" y="60" width="100" height="80" rx="10"/>
+            <path d="M140 90l40-20v60l-40-20z"/>
+            <circle cx="90" cy="100" r="14"/>
+            <circle cx="90" cy="100" r="6"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Smart home / Camera</span>
+          <h3 class="product-title">Sentinel Cam 2K</h3>
+          <p style="font-size:0.9rem;color:var(--mute)">Local recording to SD. No subscription. Works with HomeKit.</p>
+          <div class="product-foot">
+            <div class="product-price">$89<small>USD</small></div>
+            <button class="add" data-add-cart data-id="sentinel-cam" data-title="Sentinel Cam 2K" data-cat="Smart home" data-price="89" data-icon="cam">Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="product-media">
+          <svg viewBox="0 0 200 200" fill="none" stroke="#0B0B0D" stroke-width="1.4">
+            <path d="M40 110h120l-10 60H50z"/>
+            <path d="M70 110V80a30 30 0 0160 0v30"/>
+            <circle cx="100" cy="140" r="6" fill="#0B0B0D"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Smart home / Lock</span>
+          <h3 class="product-title">Vault Lock M3</h3>
+          <p style="font-size:0.9rem;color:var(--mute)">Mechanical key backup. Matter over Thread. 14-month battery.</p>
+          <div class="product-foot">
+            <div class="product-price">$189<small>USD</small></div>
+            <button class="add" data-add-cart data-id="vault-lock" data-title="Vault Lock M3" data-cat="Smart home" data-price="189" data-icon="lock">Add</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product">
+        <div class="product-media">
+          <span class="product-badge">Best value</span>
+          <svg viewBox="0 0 200 200" fill="none" stroke="#0B0B0D" stroke-width="1.4">
+            <path d="M40 100c0-22 28-40 60-40s60 18 60 40-28 40-60 40-60-18-60-40z"/>
+            <path d="M60 130l-10 30M140 130l10 30"/>
+            <path d="M85 95a15 15 0 0130 0v10a15 15 0 01-30 0z"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <span class="product-cat">Audio / Earbuds</span>
+          <h3 class="product-title">Reverb Earbuds Pro</h3>
+          <p style="font-size:0.9rem;color:var(--mute)">ANC that actually works on planes. 8h + 24h in case.</p>
+          <div class="product-foot">
+            <div class="product-price">$99<small>USD</small></div>
+            <button class="add" data-add-cart data-id="reverb-buds" data-title="Reverb Earbuds Pro" data-cat="Audio" data-price="99" data-icon="speaker">Add</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============== EDITORIAL / WHY =============== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="editorial reveal">
+      <span class="eyebrow" style="color:var(--paper-3)">A note from the founder</span>
+      <blockquote style="margin-top:1.5rem">
+        Most "best of" lists are <em>affiliate spreadsheets in a trench coat.</em>
+        We built Smart Lot because we got tired of buying the #1 pick and finding out
+        nobody who wrote about it had ever plugged it in.
+      </blockquote>
+      <div class="editorial-meta">
+        <div>
+          <strong>Our policy</strong>
+          We buy every unit at retail or auction. Manufacturers don't get a vote in what we list.
+        </div>
+        <div>
+          <strong>Our test</strong>
+          Ninety days minimum in a real home, with real walls and real Wi-Fi from a real ISP.
+        </div>
+        <div>
+          <strong>Our promise</strong>
+          If it dies inside a year, we replace it. If we wouldn't keep it, we don't list it.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== PROCESS =============== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="row-between">
+        <div>
+          <span class="eyebrow">How a lot gets listed</span>
+          <h2 class="h-1" style="margin-top:0.6rem">Four steps between auction and your door.</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="num">STEP 01</span>
+        <h3>Source</h3>
+        <p>We buy from manufacturer overstock, returns lots, and pre-release test units — never gray-market imports or pulled-listing inventory.</p>
+      </div>
+      <div class="step reveal d-1">
+        <span class="num">STEP 02</span>
+        <h3>Stress-test</h3>
+        <p>Every unit gets a power cycle, firmware audit, and benchmarks for the spec we'd lie about if we were the manufacturer. About 18% of what we buy never gets listed.</p>
+      </div>
+      <div class="step reveal d-2">
+        <span class="num">STEP 03</span>
+        <h3>Live-in</h3>
+        <p>The remaining units go into one of seven test homes for ninety days — Wi-Fi 6 mesh, plaster walls, kids, pets, the works. Failures get logged, not edited out.</p>
+      </div>
+      <div class="step reveal d-3">
+        <span class="num">STEP 04</span>
+        <h3>List honestly</h3>
+        <p>If we kept one for ourselves, we say so. If we'd buy it again, we say so. If there's a catch — a missing app feature, a flaky integration — that goes on the product page in plain English.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== TESTIMONIALS =============== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="row-between">
+        <div>
+          <span class="eyebrow">From the buyers</span>
+          <h2 class="h-1" style="margin-top:0.6rem">Reviews from people we'll never meet.</h2>
+        </div>
+        <p>4.86 stars across 3,200+ verified purchases. We don't pay for, gate, or moderate them beyond removing spam.</p>
+      </div>
+    </div>
+
+    <div class="quote-grid">
+      <div class="quote reveal">
+        <span class="stars">★★★★★</span>
+        <p>"I bought the Aurora Hub for a rental, expecting the usual cloud-only nonsense. It's been six months and it just runs. The product page warned me about the iOS app being mediocre — they were right, and I appreciated knowing up front."</p>
+        <div class="who">
+          <div class="avatar">M</div>
+          <div><strong>Marcus T.</strong><span>Portland, OR · Verified buyer</span></div>
+        </div>
+      </div>
+      <div class="quote reveal d-1">
+        <span class="stars">★★★★★</span>
+        <p>"Outfitted twelve classrooms with the bulk soundbar lot. The price was less than half of B&amp;H, and the per-unit log they sent — burn-in hours, firmware versions — saved me a week of IT work."</p>
+        <div class="who">
+          <div class="avatar">K</div>
+          <div><strong>Karen V.</strong><span>School district IT · Verified buyer</span></div>
+        </div>
+      </div>
+      <div class="quote reveal d-2">
+        <span class="stars">★★★★★</span>
+        <p>"I read three of their buying guides before I bought anything. They talked me out of a $400 router I didn't need and toward a $90 mesh that's been bulletproof. Hard to find people online who'll actively tell you to spend less."</p>
+        <div class="who">
+          <div class="avatar">D</div>
+          <div><strong>Devon P.</strong><span>Brooklyn, NY · Verified buyer</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== GUIDES PREVIEW =============== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="row-between">
+        <div>
+          <span class="eyebrow">Buying guides</span>
+          <h2 class="h-1" style="margin-top:0.6rem">Long enough to be useful. Short enough to finish.</h2>
+        </div>
+        <a href="guides.html" class="btn btn-ghost">All 22 guides
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="row row-3 reveal">
+
+      <a href="guide.html" class="guide">
+        <div class="guide-cover" style="background:linear-gradient(135deg,#C8FF3F,#9CD118)">
+          <span class="tag">Smart home · 9 min</span>
+        </div>
+        <div class="guide-body">
+          <div class="guide-meta"><span>Updated April</span><span>2026</span></div>
+          <h3>The Matter standard, explained without the marketing.</h3>
+          <p>What it actually fixes, what it doesn't, and which hubs are worth buying today vs. waiting on.</p>
+          <span class="more">Read the guide
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="guide.html" class="guide">
+        <div class="guide-cover" style="background:linear-gradient(135deg,#0B0B0D,#232328);color:#F4F2EC">
+          <span class="tag" style="background:#C8FF3F;color:#0B0B0D">Audio · 7 min</span>
+        </div>
+        <div class="guide-body">
+          <div class="guide-meta"><span>Updated March</span><span>2026</span></div>
+          <h3>Why "Hi-Res Audio" stickers mean almost nothing.</h3>
+          <p>Sample rates vs. mastering quality vs. your actual ears. A short field guide to ignoring spec sheets.</p>
+          <span class="more">Read the guide
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="guide.html" class="guide">
+        <div class="guide-cover" style="background:linear-gradient(135deg,#D4623A,#F4B860)">
+          <span class="tag">Refurbished · 6 min</span>
+        </div>
+        <div class="guide-body">
+          <div class="guide-meta"><span>Updated February</span><span>2026</span></div>
+          <h3>Refurb grades A through D — what's worth your money.</h3>
+          <p>Decoding the grades, asking the right questions, and which categories almost always make sense used.</p>
+          <span class="more">Read the guide
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =============== STAT BAND =============== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="stat-band reveal">
+      <div>
+        <div class="big">18%</div>
+        <span class="lbl">of inventory we buy never gets listed — it failed the burn-in.</span>
+      </div>
+      <div>
+        <div class="big">7</div>
+        <span class="lbl">real test homes across three US climate zones.</span>
+      </div>
+      <div>
+        <div class="big">12k+</div>
+        <span class="lbl">lots shipped since 2022 with a 1.4% return rate.</span>
+      </div>
+      <div>
+        <div class="big">$0</div>
+        <span class="lbl">paid commissions, kickbacks, or co-marketing — ever.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== NEWSLETTER =============== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="signup reveal">
+      <div>
+        <span class="eyebrow" style="color:var(--ink-2)">Once a month, no filler</span>
+        <h2 class="h-1" style="margin-top:0.75rem">Get the next catalog before it goes public.</h2>
+        <p style="margin-top:1rem;color:var(--ink-2);max-width:42ch">
+          One email when a new lot lands, with our notes. Subscribers get first pick — most things sell out before they hit the site.
+        </p>
+      </div>
+      <div>
+        <form data-newsletter>
+          <input type="email" required placeholder="you@yourdomain.com" aria-label="Email address">
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+        <small>No tracking pixels, no third parties. Unsubscribe in one click.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
-<footer>
-<p>&copy; 2026 Smart Lot Electronics &middot; <a href="https://smartlotelectronics.com">smartlotelectronics.com</a></p>
+
+<!-- =============== FOOTER =============== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">s</span>
+          <span class="brand-name" style="color:var(--paper)">Smart Lot <span style="color:var(--paper-3)">/ electronics</span></span>
+        </a>
+        <p>Honest consumer electronics at lot pricing. Tested in real homes, sold without affiliate hype, backed by a 90-day no-questions return.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html#smart-home">Smart home</a></li>
+          <li><a href="shop.html#audio">Audio</a></li>
+          <li><a href="shop.html#mobile">Mobile</a></li>
+          <li><a href="shop.html#refurb">Refurbished</a></li>
+          <li><a href="shop.html#bulk">Bulk &amp; pallet</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="guides.html">Buying guides</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="about.html#process">Our process</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="contact.html">Returns &amp; warranty</a></li>
+          <li><a href="contact.html">Bulk inquiries</a></li>
+          <li><a href="contact.html">Wholesale</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Smart Lot Electronics</span>
+      <span>Issue №07 · Spring catalog</span>
+      <span>Made for real homes</span>
+    </div>
+  </div>
 </footer>
+
+<!-- =============== CART DRAWER =============== -->
+<div class="scrim" data-scrim data-close-cart></div>
+<aside class="drawer" data-drawer aria-label="Shopping cart">
+  <div class="drawer-head">
+    <h3>Your cart</h3>
+    <button class="icon-btn" data-close-cart aria-label="Close cart">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body" data-drawer-body></div>
+  <div class="drawer-foot">
+    <div class="total"><span>Subtotal</span><strong data-drawer-total>$0</strong></div>
+    <small>Shipping &amp; taxes calculated at checkout. 90-day returns included.</small>
+    <a href="#" class="btn btn-primary">Checkout</a>
+    <button class="btn btn-ghost" data-close-cart>Keep shopping</button>
+  </div>
+</aside>
+
+<script src="assets/js/main.js"></script>
 </body>
 </html>
