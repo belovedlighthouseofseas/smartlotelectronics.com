@@ -637,6 +637,152 @@ h1, h2, h3, h4 { font-family: var(--display); color: var(--white); letter-spacin
 .reveal.d-2 { transition-delay: 0.16s; }
 .reveal.d-3 { transition-delay: 0.24s; }
 
+/* ---------- EVERY PURCHASE WINS banner ---------- */
+.win-banner {
+  background: var(--card);
+  border: 2px solid var(--blue);
+  border-radius: var(--r-xl);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem);
+  text-align: center;
+  position: relative;
+  box-shadow: var(--glow-md), inset 0 0 60px rgba(0, 217, 255, 0.05);
+  overflow: hidden;
+  margin-bottom: clamp(3rem, 5vw, 4rem);
+}
+.win-banner::before, .win-banner::after {
+  content: ''; position: absolute; left: 6%; right: 6%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  box-shadow: 0 0 12px var(--blue);
+}
+.win-banner::before { top: 0; }
+.win-banner::after { bottom: 0; }
+.win-banner h2 {
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1;
+}
+.win-banner h2 .win { color: var(--blue); text-shadow: 0 0 30px rgba(0, 217, 255, 0.7); }
+.win-pillars {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  position: relative;
+}
+@media (min-width: 720px) {
+  .win-pillars { grid-template-columns: repeat(3, 1fr); }
+  .win-pillar + .win-pillar { border-left: 1px solid var(--line-hi); }
+}
+.win-pillar { display: flex; flex-direction: column; align-items: center; gap: 0.85rem; padding: 0 1rem; }
+.win-pillar .icon {
+  width: 64px; height: 64px;
+  border-radius: 16px;
+  background: rgba(0, 217, 255, 0.08);
+  border: 1px solid var(--line-hi);
+  display: grid; place-items: center;
+  color: var(--blue);
+  box-shadow: var(--glow-sm);
+}
+.win-pillar .icon svg { width: 30px; height: 30px; filter: drop-shadow(0 0 8px rgba(0, 217, 255, 0.6)); }
+.win-pillar strong { font-family: var(--display); font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--white); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.win-pillar small { font-size: 0.82rem; color: var(--ink-soft); letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--mono); }
+
+/* ---------- Tier color variants ---------- */
+.tier.tier-blue { border-color: rgba(0, 217, 255, 0.4); }
+.tier.tier-blue::before { background: linear-gradient(90deg, transparent, var(--blue), transparent); box-shadow: 0 0 12px var(--blue); opacity: 1; }
+.tier.tier-blue .tier-num { color: var(--blue); }
+
+.tier.tier-purple { border-color: rgba(180, 100, 255, 0.4); }
+.tier.tier-purple::before { background: linear-gradient(90deg, transparent, #B464FF, transparent); box-shadow: 0 0 12px #B464FF; opacity: 1; }
+.tier.tier-purple .tier-num { color: #C99CFF; }
+.tier.tier-purple .tier-reward { background: rgba(180, 100, 255, 0.06); border-color: rgba(180, 100, 255, 0.42); }
+.tier.tier-purple .tier-reward svg { color: #C99CFF; filter: drop-shadow(0 0 6px rgba(180, 100, 255, 0.55)); }
+.tier.tier-purple.featured { background: linear-gradient(180deg, rgba(180,100,255,0.1) 0%, var(--card) 60%); box-shadow: 0 0 24px rgba(180, 100, 255, 0.3); }
+.tier.tier-purple .badge { background: #B464FF; color: var(--white); box-shadow: 0 0 16px rgba(180, 100, 255, 0.55); }
+
+.tier.tier-gold { border-color: rgba(255, 200, 60, 0.4); }
+.tier.tier-gold::before { background: linear-gradient(90deg, transparent, #FFC83C, transparent); box-shadow: 0 0 12px #FFC83C; opacity: 1; }
+.tier.tier-gold .tier-num { color: #FFD96B; }
+.tier.tier-gold .tier-reward { background: rgba(255, 200, 60, 0.06); border-color: rgba(255, 200, 60, 0.42); }
+.tier.tier-gold .tier-reward svg { color: #FFD96B; filter: drop-shadow(0 0 6px rgba(255, 200, 60, 0.55)); }
+
+/* ---------- Bonus items strip inside tier ---------- */
+.bonus-items {
+  display: grid; gap: 0.45rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 0.25rem;
+}
+.bonus-item {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 0.85rem 0.4rem;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+}
+.bonus-item svg { width: 26px; height: 26px; color: var(--blue); }
+.bonus-item span { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); line-height: 1.15; }
+.tier-purple .bonus-item svg { color: #C99CFF; }
+.tier-gold .bonus-item svg { color: #FFD96B; }
+
+/* ---------- Real logo image ---------- */
+.brand-logo { height: 44px; width: auto; display: block; }
+@media (min-width: 720px) { .brand-logo { height: 50px; } }
+.brand-logo.foot-logo { height: 88px; max-width: 280px; }
+
+/* ---------- Real booth photo in hero ---------- */
+.hero-booth {
+  position: relative;
+  border: 1px solid var(--line-hi);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: var(--glow-md);
+  max-width: 560px;
+  margin: 0 auto;
+}
+.hero-booth::before, .hero-booth::after {
+  content: '';
+  position: absolute;
+  height: 2px; left: 6%; right: 6%;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  box-shadow: 0 0 12px var(--blue);
+  z-index: 3;
+  pointer-events: none;
+}
+.hero-booth::before { top: 0; }
+.hero-booth::after { bottom: 0; }
+.hero-booth .booth-photo {
+  width: 100%; height: auto; display: block;
+  position: relative; z-index: 1;
+}
+.hero-booth .booth-tag {
+  position: absolute;
+  top: -14px; right: -10px;
+  z-index: 4;
+  background: var(--yellow); color: var(--bg);
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+  padding: 0.4rem 0.75rem; border-radius: 999px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  box-shadow: 0 0 24px rgba(255, 214, 10, 0.5);
+  transform: rotate(6deg);
+}
+
+/* ---------- Social handle ---------- */
+.handle {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  color: var(--blue);
+  margin-top: 1.5rem;
+  text-shadow: 0 0 14px rgba(0, 217, 255, 0.55);
+  font-weight: 700;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .ticker-track { animation: none; }
