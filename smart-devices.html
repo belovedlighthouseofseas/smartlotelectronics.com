@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Devices — Watches, Trackers, Smart Home — Smart Lot Electronics</title>
+<meta name="description" content="Smartwatches, fitness trackers, smart plugs, sensors, and wearables. Works without subscriptions.">
+<link rel="canonical" href="https://smartlotelectronics.com/smart-devices.html">
+<meta name="theme-color" content="#02050C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tech.css">
+</head>
+<body data-page="shop" data-layout="pending">
+
+<main>
+
+<section class="page-head">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span>Smart Devices</div>
+    <h1>Smart gear, <span class="blue">no subscriptions.</span></h1>
+    <p>Watches, trackers, smart plugs, sensors. Works the day you open the box and keeps working when the company changes its mind.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:clamp(2rem,4vw,3rem)">
+  <div class="wrap">
+    <div class="results-bar" style="margin-bottom:2rem;border-top:1px solid var(--line)">
+      <span><span data-count>0</span> products in Smart Devices</span>
+      <span class="mono">All bonus eligible</span>
+    </div>
+    <div class="product-grid" id="grid"></div>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  window.SLE.renderCategory('smart', '#grid');
+  document.querySelector('[data-count]').textContent = window.SLE.PRODUCTS.filter(p => p.cat === 'smart').length;
+</script>
+</body>
+</html>

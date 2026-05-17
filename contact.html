@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Smart Lot Electronics</title>
+<meta name="description" content="Get in touch with Smart Lot Electronics. Order help, returns, wholesale, and press inquiries.">
+<link rel="canonical" href="https://smartlotelectronics.com/contact.html">
+<meta name="theme-color" content="#02050C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tech.css">
+</head>
+<body data-page="about" data-layout="pending">
+
+<main>
+
+<section class="page-head">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a><span>/</span>Contact</div>
+    <h1>Tell us what you <span class="blue">need.</span></h1>
+    <p>Real humans, fast replies. Most messages get an answer within one business day — we don't outsource support.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div style="display:grid;gap:2.5rem;grid-template-columns:1fr">
+      <div style="display:grid;gap:1rem">
+        <div style="padding:1.5rem;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg)">
+          <span class="eyebrow"><span class="dot"></span>Direct lines</span>
+          <div style="display:grid;gap:1rem;margin-top:1.25rem">
+            <div>
+              <strong style="display:block;color:var(--white);font-family:var(--display);font-size:1.05rem">Orders &amp; general</strong>
+              <a href="mailto:hello@smartlotelectronics.com" style="color:var(--blue);font-size:0.95rem">hello@smartlotelectronics.com</a>
+            </div>
+            <div>
+              <strong style="display:block;color:var(--white);font-family:var(--display);font-size:1.05rem">Returns &amp; warranty</strong>
+              <a href="mailto:returns@smartlotelectronics.com" style="color:var(--blue);font-size:0.95rem">returns@smartlotelectronics.com</a>
+            </div>
+            <div>
+              <strong style="display:block;color:var(--white);font-family:var(--display);font-size:1.05rem">Wholesale &amp; bulk</strong>
+              <a href="mailto:bulk@smartlotelectronics.com" style="color:var(--blue);font-size:0.95rem">bulk@smartlotelectronics.com</a>
+            </div>
+            <div>
+              <strong style="display:block;color:var(--white);font-family:var(--display);font-size:1.05rem">Press</strong>
+              <a href="mailto:press@smartlotelectronics.com" style="color:var(--blue);font-size:0.95rem">press@smartlotelectronics.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:1.5rem;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg)">
+          <span class="eyebrow"><span class="dot"></span>Hours</span>
+          <p style="margin-top:1.25rem;color:var(--ink-soft);font-size:0.95rem;line-height:1.6">
+            Mon–Fri · 9am–6pm Pacific<br>
+            Closed federal holidays
+          </p>
+        </div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(1.75rem,4vw,2.5rem)">
+        <span class="eyebrow"><span class="dot"></span>Send a message</span>
+        <h2 class="h-2" style="margin:0.75rem 0 1.5rem">What's the topic?</h2>
+
+        <form class="form" data-contact>
+          <div class="field-row">
+            <div class="field">
+              <label for="c-name">Your name</label>
+              <input id="c-name" type="text" required placeholder="First and last">
+            </div>
+            <div class="field">
+              <label for="c-email">Email</label>
+              <input id="c-email" type="email" required placeholder="you@yourdomain.com">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="c-topic">Topic</label>
+              <select id="c-topic" required>
+                <option value="">Pick one…</option>
+                <option>Order or shipping question</option>
+                <option>Returns or warranty</option>
+                <option>Wholesale / bulk</option>
+                <option>Press or partnership</option>
+                <option>General feedback</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="c-order">Order # (optional)</label>
+              <input id="c-order" type="text" placeholder="e.g. SLE-128492">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="c-msg">Message</label>
+            <textarea id="c-msg" required placeholder="Order number, model name, what you've already tried, etc."></textarea>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-top:0.5rem">
+            <button type="submit" class="btn btn-primary">
+              Send message
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+            <small class="mono" style="font-size:0.75rem;letter-spacing:0.1em;color:var(--gray);text-transform:uppercase">Avg. reply · 4 hours</small>
+          </div>
+
+          <p data-contact-status style="display:none;margin-top:0.75rem;padding:1rem 1.25rem;background:rgba(0,217,255,0.1);border:1px solid var(--line-hi);border-radius:var(--r-md);font-size:0.95rem;color:var(--ink-soft)"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
