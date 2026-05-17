@@ -47,24 +47,51 @@
   const cartTotal = () => readCart().reduce((s, i) => s + i.price * i.qty, 0);
   const fmt = (n) => '$' + n.toFixed(2).replace(/\.00$/, '');
 
+  const renderRewardProgress = () => {
+    const el = document.querySelector('[data-reward-prog]');
+    if (!el) return;
+    const c = cartCount();
+    const tier = c >= 3 ? 3 : c >= 2 ? 2 : c >= 1 ? 1 : 0;
+    const pct = Math.min(100, (c / 3) * 100);
+    const msg = tier === 0 ? 'Add 1 item to unlock your free bonus' :
+                tier === 1 ? '✦ Tier 1 unlocked — free bonus item!' :
+                tier === 2 ? '✦✦ Tier 2 unlocked — premium upgrade!' :
+                '✦✦✦ Tier 3 VIP unlocked — biggest bonus pack!';
+    const next = tier < 3 ? `${c}/3` : 'VIP ★';
+    el.innerHTML = `
+      <div class="label"><span class="msg">${msg}</span><strong>${next}</strong></div>
+      <div class="bar"><div class="fill" style="width:${pct}%"></div></div>
+      <div class="marks">
+        <span class="t1 ${tier >= 1 ? 'active' : ''}"><span class="dot"></span>Tier 1</span>
+        <span class="t2 ${tier >= 2 ? 'active' : ''}"><span class="dot"></span>Tier 2</span>
+        <span class="t3 ${tier >= 3 ? 'active' : ''}"><span class="dot"></span>Tier 3 VIP</span>
+      </div>
+    `;
+  };
+
   const updateCountBadge = () => {
     const c = cartCount();
     document.querySelectorAll('[data-cart-count]').forEach(el => {
       el.textContent = c;
       el.style.display = c > 0 ? '' : 'none';
     });
+    renderRewardProgress();
   };
 
   const renderDrawer = () => {
     const body = document.querySelector('[data-drawer-body]');
     const totalEl = document.querySelector('[data-drawer-total]');
     if (!body) return;
+    renderRewardProgress();
     const items = readCart();
     if (items.length === 0) {
       body.innerHTML = `<div class="drawer-empty">
         <p>Your cart is empty.</p>
-        <a class="btn btn-ghost" href="shop.html">Browse the catalog</a>
+        <a class="btn btn-ghost" href="#deals" data-close-cart>Browse Tech Drops</a>
       </div>`;
+      // Close-on-click for that link
+      const linkClose = body.querySelector('[data-close-cart]');
+      linkClose && linkClose.addEventListener('click', () => openDrawer(false));
     } else {
       body.innerHTML = items.map(it => `
         <div class="cart-item" data-id="${it.id}">
@@ -222,6 +249,25 @@
       lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>',
     };
     return icons[kind] || icons.box;
+  }
+
+  /* ---------- Countdown deal banner ---------- */
+  const countdownEl = document.querySelector('[data-countdown]');
+  if (countdownEl) {
+    const tick = () => {
+      // Targets end-of-day local time; rolls over to next day
+      const now = new Date();
+      const target = new Date(now);
+      target.setHours(23, 59, 59, 0);
+      let diff = target - now;
+      if (diff < 0) diff += 86400000;
+      const h = String(Math.floor(diff / 3600000)).padStart(2, '0');
+      const m = String(Math.floor(diff / 60000) % 60).padStart(2, '0');
+      const s = String(Math.floor(diff / 1000) % 60).padStart(2, '0');
+      countdownEl.textContent = `${h}:${m}:${s}`;
+    };
+    tick();
+    setInterval(tick, 1000);
   }
 
   updateCountBadge();

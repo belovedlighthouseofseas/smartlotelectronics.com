@@ -44,6 +44,11 @@
   </div>
 </header>
 
+<!-- Countdown deal banner -->
+<div class="countdown" role="alert">
+  <span class="bolt">⚡</span> <strong>Flash Drop</strong> · 20% off all Audio &amp; Charging · ends in <span class="time" data-countdown>—:—:—</span>
+</div>
+
 <div class="mobile-panel" data-mobile-panel>
   <button class="icon-btn close" data-mobile-close aria-label="Close menu">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -285,23 +290,24 @@
   </div>
 </section>
 
-<!-- =============== FEATURED DEALS =============== -->
+<!-- =============== TECH DROPS THIS WEEK =============== -->
 <section class="section" id="deals" style="padding-top:0">
   <div class="wrap">
 
     <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Featured Tech Deals</span>
+      <span class="eyebrow"><span class="dot"></span>Tech Drops This Week</span>
       <div class="top">
-        <h2>This week's hottest <span class="blue">finds.</span></h2>
-        <p>Hand-picked drops at prices that move. When they're gone, they're gone — new lots every Friday.</p>
+        <h2>Fresh in the booth. <span class="blue">Limited runs.</span></h2>
+        <p>Hand-picked drops at prices that move. New lots every Friday — when they're gone, they're gone.</p>
       </div>
     </div>
 
     <div class="product-grid reveal">
 
-      <article class="prod">
+      <!-- FEATURED GLOW: Wireless Earbuds Pro -->
+      <article class="prod v-glow">
         <div class="prod-media">
-          <span class="prod-tag">−40%</span>
+          <span class="prod-tag blue">Staff Pick</span>
           <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M65 100c0-20 8-40 25-40s25 20 25 40v25a15 15 0 0 1-15 15h-10v-50h25M65 100v25a15 15 0 0 0 15 15h10v-50H65"/>
             <circle cx="70" cy="115" r="3" fill="currentColor"/><circle cx="130" cy="115" r="3" fill="currentColor"/>
@@ -310,6 +316,11 @@
         <div class="prod-body">
           <span class="prod-cat">Audio · Earbuds</span>
           <div class="prod-name">Wireless Earbuds Pro</div>
+          <div class="stars">★★★★★ <span class="count">4.8 (1.2k)</span></div>
+          <div class="prod-labels">
+            <span class="lbl-chip bonus">Bonus Eligible</span>
+            <span class="lbl-chip bundle-eligible">Bundle &amp; Save</span>
+          </div>
           <div class="prod-foot">
             <div class="prod-price"><span class="now">$19.99</span><span class="was">$34.99</span></div>
             <button class="prod-add" data-add-cart data-id="earbuds-pro" data-title="Wireless Earbuds Pro" data-cat="Audio" data-price="19.99" aria-label="Add to cart">
@@ -319,9 +330,10 @@
         </div>
       </article>
 
+      <!-- STANDARD: Bluetooth Speaker -->
       <article class="prod">
         <div class="prod-media">
-          <span class="prod-tag blue">New</span>
+          <span class="prod-tag blue">New Drop</span>
           <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="50" y="60" width="100" height="80" rx="10"/>
             <circle cx="100" cy="100" r="22"/>
@@ -333,6 +345,10 @@
         <div class="prod-body">
           <span class="prod-cat">Audio · Speaker</span>
           <div class="prod-name">Bluetooth Speaker BOOM</div>
+          <div class="stars">★★★★☆ <span class="count">4.6 (842)</span></div>
+          <div class="prod-labels">
+            <span class="lbl-chip bonus">Bonus Eligible</span>
+          </div>
           <div class="prod-foot">
             <div class="prod-price"><span class="now">$29.99</span><span class="was">$49.99</span></div>
             <button class="prod-add" data-add-cart data-id="boom-speaker" data-title="Bluetooth Speaker BOOM" data-cat="Audio" data-price="29.99" aria-label="Add to cart">
@@ -342,9 +358,10 @@
         </div>
       </article>
 
-      <article class="prod">
+      <!-- LIMITED STOCK: Smartwatch -->
+      <article class="prod v-limited">
         <div class="prod-media">
-          <span class="prod-tag">−35%</span>
+          <span class="prod-tag">Low Stock</span>
           <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="70" y="40" width="60" height="120" rx="14"/>
             <circle cx="100" cy="100" r="22"/>
@@ -355,6 +372,13 @@
         <div class="prod-body">
           <span class="prod-cat">Smart Devices</span>
           <div class="prod-name">Smartwatch Fit X</div>
+          <div class="stars">★★★★★ <span class="count">4.9 (3.1k)</span></div>
+          <div class="prod-labels">
+            <span class="lbl-chip bonus">Bonus Eligible</span>
+            <span class="lbl-chip low">Selling fast</span>
+          </div>
+          <div class="stock-bar"><div style="width:18%"></div></div>
+          <div class="stock-text"><span>Only 7 left</span><span>−35%</span></div>
           <div class="prod-foot">
             <div class="prod-price"><span class="now">$34.99</span><span class="was">$54.99</span></div>
             <button class="prod-add" data-add-cart data-id="watch-fitx" data-title="Smartwatch Fit X" data-cat="Smart Devices" data-price="34.99" aria-label="Add to cart">
@@ -364,18 +388,47 @@
         </div>
       </article>
 
+      <!-- BUNDLE PICK: Charging Power Combo -->
+      <article class="prod v-bundle">
+        <div class="prod-media">
+          <span class="prod-tag">Bundle Pick</span>
+          <div class="bundle-stack">
+            <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="60" width="120" height="80" rx="10"/><rect x="100" y="75" width="50" height="50" rx="4"/></svg>
+            <span class="bundle-plus">+</span>
+            <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M40 100c20 0 20-15 40-15s20 15 40 15 20-15 40-15"/><rect x="30" y="92" width="20" height="16" rx="3"/><rect x="150" y="92" width="20" height="16" rx="3"/></svg>
+          </div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Charging · Bundle</span>
+          <div class="prod-name">Power Combo: 20K Bank + Cable</div>
+          <span class="bundle-save">Save $5 together</span>
+          <div class="prod-labels" style="margin-top:0.4rem">
+            <span class="lbl-chip bundle-eligible">Counts as 2 items</span>
+          </div>
+          <div class="prod-foot">
+            <div class="prod-price"><span class="now">$29.99</span><span class="was">$34.98</span></div>
+            <button class="prod-add" data-add-cart data-id="bundle-power" data-title="Power Combo Bundle" data-cat="Charging" data-price="29.99" data-qty="2" aria-label="Add bundle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- STANDARD: Fast Cable -->
       <article class="prod">
         <div class="prod-media">
+          <span class="prod-tag">−50%</span>
           <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M40 100c20 0 20-15 40-15s20 15 40 15 20-15 40-15"/>
             <rect x="30" y="92" width="20" height="16" rx="3"/>
             <rect x="150" y="92" width="20" height="16" rx="3"/>
-            <path d="M40 100l5-12M40 100l5 12"/>
           </svg>
         </div>
         <div class="prod-body">
           <span class="prod-cat">Charging · USB-C</span>
           <div class="prod-name">Fast Charging Cable 6ft</div>
+          <div class="stars">★★★★★ <span class="count">4.7 (5.2k)</span></div>
+          <div class="prod-labels"><span class="lbl-chip bonus">Bonus Eligible</span></div>
           <div class="prod-foot">
             <div class="prod-price"><span class="now">$9.99</span><span class="was">$19.99</span></div>
             <button class="prod-add" data-add-cart data-id="fast-cable" data-title="Fast Charging Cable 6ft" data-cat="Charging" data-price="9.99" aria-label="Add to cart">
@@ -385,30 +438,10 @@
         </div>
       </article>
 
+      <!-- STANDARD: Car Charger -->
       <article class="prod">
         <div class="prod-media">
           <span class="prod-tag red">Hot</span>
-          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="40" y="60" width="120" height="80" rx="10"/>
-            <path d="M55 80h.01M65 80h.01M75 80h.01M55 90h.01M65 90h.01M75 90h.01"/>
-            <rect x="100" y="75" width="50" height="50" rx="4"/>
-            <path d="M115 95l8 8 12-15"/>
-          </svg>
-        </div>
-        <div class="prod-body">
-          <span class="prod-cat">Charging · 20,000mAh</span>
-          <div class="prod-name">Mega Power Bank 20K</div>
-          <div class="prod-foot">
-            <div class="prod-price"><span class="now">$24.99</span><span class="was">$44.99</span></div>
-            <button class="prod-add" data-add-cart data-id="powerbank-20k" data-title="Mega Power Bank 20K" data-cat="Charging" data-price="24.99" aria-label="Add to cart">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-            </button>
-          </div>
-        </div>
-      </article>
-
-      <article class="prod">
-        <div class="prod-media">
           <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M60 70v60a10 10 0 0 0 10 10h60a10 10 0 0 0 10-10V70"/>
             <path d="M55 70h90l-6-12H61z"/>
@@ -419,6 +452,8 @@
         <div class="prod-body">
           <span class="prod-cat">Car Tech</span>
           <div class="prod-name">Dual USB Car Charger</div>
+          <div class="stars">★★★★☆ <span class="count">4.5 (612)</span></div>
+          <div class="prod-labels"><span class="lbl-chip bonus">Bonus Eligible</span></div>
           <div class="prod-foot">
             <div class="prod-price"><span class="now">$12.99</span><span class="was">$22.99</span></div>
             <button class="prod-add" data-add-cart data-id="car-charger" data-title="Dual USB Car Charger" data-cat="Car Tech" data-price="12.99" aria-label="Add to cart">
@@ -428,6 +463,7 @@
         </div>
       </article>
 
+      <!-- STANDARD: Phone Stand -->
       <article class="prod">
         <div class="prod-media">
           <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2">
@@ -440,6 +476,8 @@
         <div class="prod-body">
           <span class="prod-cat">Everyday Tech</span>
           <div class="prod-name">Adjustable Phone Stand</div>
+          <div class="stars">★★★★☆ <span class="count">4.4 (388)</span></div>
+          <div class="prod-labels"><span class="lbl-chip bonus">Bonus Eligible</span></div>
           <div class="prod-foot">
             <div class="prod-price"><span class="now">$14.99</span><span class="was">$24.99</span></div>
             <button class="prod-add" data-add-cart data-id="phone-stand" data-title="Adjustable Phone Stand" data-cat="Everyday Tech" data-price="14.99" aria-label="Add to cart">
@@ -449,7 +487,8 @@
         </div>
       </article>
 
-      <article class="prod">
+      <!-- FEATURED GLOW: Wireless Headphones Pro -->
+      <article class="prod v-glow">
         <div class="prod-media">
           <span class="prod-tag">−50%</span>
           <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2">
@@ -460,9 +499,245 @@
         <div class="prod-body">
           <span class="prod-cat">Audio · Headphones</span>
           <div class="prod-name">Wireless Headphones Pro</div>
+          <div class="stars">★★★★★ <span class="count">4.9 (2.7k)</span></div>
+          <div class="prod-labels">
+            <span class="lbl-chip bonus">Bonus Eligible</span>
+            <span class="lbl-chip bundle-eligible">Bundle &amp; Save</span>
+          </div>
           <div class="prod-foot">
             <div class="prod-price"><span class="now">$39.99</span><span class="was">$79.99</span></div>
             <button class="prod-add" data-add-cart data-id="headphones-pro" data-title="Wireless Headphones Pro" data-cat="Audio" data-price="39.99" aria-label="Add to cart">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- =============== UNDER $20 FINDS =============== -->
+<section class="section" id="under20" style="padding-top:0">
+  <div class="wrap">
+
+    <div class="under-banner reveal">
+      <div class="left">
+        <span class="eyebrow"><span class="dot"></span>Impulse-grab energy</span>
+        <strong>Everything Under $20</strong>
+        <small>Real tech you'll actually use, priced like swap-meet finds. All Bonus Eligible.</small>
+      </div>
+      <a href="#deals" class="btn btn-ghost">Browse all under $20
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="deal-grid reveal">
+
+      <div class="mini-prod">
+        <div class="mini-media">
+          <span class="price-tag">$9.99</span>
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 50c10 0 10-8 20-8s10 8 20 8 10-8 20-8"/><rect x="15" y="46" width="10" height="8" rx="2"/><rect x="75" y="46" width="10" height="8" rx="2"/></svg>
+        </div>
+        <div class="mini-body">
+          <div class="mini-name">Fast Charging Cable</div>
+          <button class="mini-add" data-add-cart data-id="cable-mini" data-title="Fast Charging Cable" data-cat="Charging" data-price="9.99">Quick Add</button>
+        </div>
+      </div>
+
+      <div class="mini-prod">
+        <div class="mini-media">
+          <span class="price-tag">$12.99</span>
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><path d="M30 35v30a5 5 0 0 0 5 5h30a5 5 0 0 0 5-5V35"/><path d="M28 35h44l-3-6H31z"/><path d="M42 47l16 16M58 47l-16 16"/></svg>
+        </div>
+        <div class="mini-body">
+          <div class="mini-name">Car Charger Dual USB</div>
+          <button class="mini-add" data-add-cart data-id="carmini" data-title="Car Charger Dual USB" data-cat="Car Tech" data-price="12.99">Quick Add</button>
+        </div>
+      </div>
+
+      <div class="mini-prod">
+        <div class="mini-media">
+          <span class="price-tag">$14.99</span>
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><rect x="35" y="20" width="30" height="45" rx="3"/><path d="M25 72h50M50 65v13M35 35h30"/></svg>
+        </div>
+        <div class="mini-body">
+          <div class="mini-name">Phone Stand</div>
+          <button class="mini-add" data-add-cart data-id="stand-mini" data-title="Phone Stand" data-cat="Everyday Tech" data-price="14.99">Quick Add</button>
+        </div>
+      </div>
+
+      <div class="mini-prod">
+        <div class="mini-media">
+          <span class="price-tag">$16.99</span>
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><circle cx="50" cy="50" r="22"/><path d="M50 28v-8M50 80v-8M28 50h-8M80 50h-8"/></svg>
+        </div>
+        <div class="mini-body">
+          <div class="mini-name">Wireless Charge Pad</div>
+          <button class="mini-add" data-add-cart data-id="pad-mini" data-title="Wireless Charge Pad" data-cat="Charging" data-price="16.99">Quick Add</button>
+        </div>
+      </div>
+
+      <div class="mini-prod">
+        <div class="mini-media">
+          <span class="price-tag">$18.99</span>
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><rect x="20" y="40" width="60" height="20" rx="3"/><circle cx="35" cy="50" r="4"/><circle cx="65" cy="50" r="4"/></svg>
+        </div>
+        <div class="mini-body">
+          <div class="mini-name">USB Hub 4-Port</div>
+          <button class="mini-add" data-add-cart data-id="hub-mini" data-title="USB Hub 4-Port" data-cat="Everyday Tech" data-price="18.99">Quick Add</button>
+        </div>
+      </div>
+
+      <div class="mini-prod">
+        <div class="mini-media">
+          <span class="price-tag">$19.99</span>
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 50c0-10 4-20 12-20s12 10 12 20v12a8 8 0 0 1-8 8h-5v-25h12M32 50v12a8 8 0 0 0 8 8h5v-25H32"/></svg>
+        </div>
+        <div class="mini-body">
+          <div class="mini-name">Wireless Earbuds Pro</div>
+          <button class="mini-add" data-add-cart data-id="earbuds-mini" data-title="Wireless Earbuds Pro" data-cat="Audio" data-price="19.99">Quick Add</button>
+        </div>
+      </div>
+
+      <div class="mini-prod">
+        <div class="mini-media">
+          <span class="price-tag">$9.99</span>
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="8" fill="currentColor"/></svg>
+        </div>
+        <div class="mini-body">
+          <div class="mini-name">Magnetic Mount</div>
+          <button class="mini-add" data-add-cart data-id="mount-mini" data-title="Magnetic Mount" data-cat="Car Tech" data-price="9.99">Quick Add</button>
+        </div>
+      </div>
+
+      <div class="mini-prod">
+        <div class="mini-media">
+          <span class="price-tag">$14.99</span>
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><rect x="35" y="22" width="30" height="56" rx="5"/><circle cx="50" cy="50" r="8"/></svg>
+        </div>
+        <div class="mini-body">
+          <div class="mini-name">Mini Power Bank 10K</div>
+          <button class="mini-add" data-add-cart data-id="pb-mini" data-title="Mini Power Bank 10K" data-cat="Charging" data-price="14.99">Quick Add</button>
+        </div>
+      </div>
+
+      <div class="mini-prod">
+        <div class="mini-media">
+          <span class="price-tag">$11.99</span>
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><rect x="25" y="35" width="50" height="30" rx="4"/><path d="M50 35v-8M50 73v-8"/></svg>
+        </div>
+        <div class="mini-body">
+          <div class="mini-name">Bluetooth Receiver</div>
+          <button class="mini-add" data-add-cart data-id="bt-mini" data-title="Bluetooth Receiver" data-cat="Audio" data-price="11.99">Quick Add</button>
+        </div>
+      </div>
+
+      <div class="mini-prod">
+        <div class="mini-media">
+          <span class="price-tag">$7.99</span>
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><path d="M30 50h40M50 30v40"/><circle cx="50" cy="50" r="20"/></svg>
+        </div>
+        <div class="mini-body">
+          <div class="mini-name">USB-C to USB-A</div>
+          <button class="mini-add" data-add-cart data-id="adapt-mini" data-title="USB-C to USB-A" data-cat="Charging" data-price="7.99">Quick Add</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- =============== BUNDLE & SAVE =============== -->
+<section class="section" id="bundles" style="padding-top:0">
+  <div class="wrap">
+
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:#C99CFF;border-color:rgba(180,100,255,0.4);background:rgba(180,100,255,0.08)"><span class="dot" style="background:#C99CFF;box-shadow:0 0 8px #C99CFF"></span>Bundle &amp; Save</span>
+      <div class="top">
+        <h2>Buy together. <span style="color:#C99CFF;text-shadow:0 0 18px rgba(180,100,255,0.55)">Stack rewards.</span></h2>
+        <p>Pre-built bundles that auto-trigger the next bonus tier. Cheaper than buying solo, plus a bigger gift in the box.</p>
+      </div>
+    </div>
+
+    <div class="product-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+
+      <article class="prod v-bundle">
+        <div class="prod-media">
+          <span class="prod-tag">Audio Starter</span>
+          <div class="bundle-stack">
+            <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M65 100c0-20 8-40 25-40s25 20 25 40v25a15 15 0 0 1-15 15h-10v-50h25M65 100v25a15 15 0 0 0 15 15h10v-50H65"/></svg>
+            <span class="bundle-plus">+</span>
+            <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="70" y="40" width="60" height="90" rx="6"/><path d="M50 145h100M100 130v25"/></svg>
+          </div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Audio · 2-item bundle</span>
+          <div class="prod-name">Wireless Earbuds + Phone Stand</div>
+          <span class="bundle-save">Save $10 · Unlocks Tier 2</span>
+          <div class="prod-labels" style="margin-top:0.4rem">
+            <span class="lbl-chip bundle-eligible">Counts as 2 items</span>
+            <span class="lbl-chip bonus">Premium bonus</span>
+          </div>
+          <div class="prod-foot">
+            <div class="prod-price"><span class="now">$34.99</span><span class="was">$44.98</span></div>
+            <button class="prod-add" data-add-cart data-id="bundle-audio" data-title="Audio Starter Bundle" data-cat="Bundle" data-price="34.99" data-qty="2" aria-label="Add bundle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="prod v-bundle">
+        <div class="prod-media">
+          <span class="prod-tag">Power Combo</span>
+          <div class="bundle-stack">
+            <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="60" width="120" height="80" rx="10"/><rect x="100" y="75" width="50" height="50" rx="4"/></svg>
+            <span class="bundle-plus">+</span>
+            <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M40 100c20 0 20-15 40-15s20 15 40 15 20-15 40-15"/></svg>
+          </div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Charging · 2-item bundle</span>
+          <div class="prod-name">20K Power Bank + Fast Cable</div>
+          <span class="bundle-save">Save $5 · Unlocks Tier 2</span>
+          <div class="prod-labels" style="margin-top:0.4rem">
+            <span class="lbl-chip bundle-eligible">Counts as 2 items</span>
+            <span class="lbl-chip bonus">Premium bonus</span>
+          </div>
+          <div class="prod-foot">
+            <div class="prod-price"><span class="now">$29.99</span><span class="was">$34.98</span></div>
+            <button class="prod-add" data-add-cart data-id="bundle-power" data-title="Power Combo Bundle" data-cat="Bundle" data-price="29.99" data-qty="2" aria-label="Add bundle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="prod v-bundle">
+        <div class="prod-media">
+          <span class="prod-tag">VIP Trio</span>
+          <div class="bundle-stack">
+            <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="70" y="40" width="60" height="120" rx="14"/><circle cx="100" cy="100" r="22"/></svg>
+            <span class="bundle-plus">+</span>
+            <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M60 100v25a10 10 0 0 0 10 10h10v-50H60M140 100v25a10 10 0 0 1-10 10h-10v-50h20"/><path d="M60 100c0-25 18-50 40-50s40 25 40 50"/></svg>
+            <span class="bundle-plus">+</span>
+            <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="50" y="60" width="100" height="80" rx="10"/><circle cx="100" cy="100" r="22"/></svg>
+          </div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Audio &amp; Smart · 3-item bundle</span>
+          <div class="prod-name">Watch + Headphones + Speaker</div>
+          <span class="bundle-save">Save $30 · Unlocks Tier 3 VIP</span>
+          <div class="prod-labels" style="margin-top:0.4rem">
+            <span class="lbl-chip bundle-eligible">Counts as 3 items</span>
+            <span class="lbl-chip bonus">VIP Bonus Pack</span>
+          </div>
+          <div class="prod-foot">
+            <div class="prod-price"><span class="now">$99.99</span><span class="was">$129.97</span></div>
+            <button class="prod-add" data-add-cart data-id="bundle-vip" data-title="VIP Trio Bundle" data-cat="Bundle" data-price="99.99" data-qty="3" aria-label="Add bundle">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
             </button>
           </div>
@@ -607,6 +882,7 @@
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
   </div>
+  <div class="reward-prog" data-reward-prog></div>
   <div class="drawer-body" data-drawer-body></div>
   <div class="drawer-foot">
     <div class="total"><span>Subtotal</span><strong data-drawer-total>$0</strong></div>
