@@ -43,7 +43,9 @@
     catch { return []; }
   };
   const writeCart = (c) => localStorage.setItem(CART_KEY, JSON.stringify(c));
-  const cartCount = () => readCart().reduce((s, i) => s + i.qty, 0);
+  // Counts toward bonus tier — a bundle counts as its bundleSize (item count),
+  // not just 1, so a 3-item bundle properly unlocks Tier 3 VIP.
+  const cartCount = () => readCart().reduce((s, i) => s + i.qty * (i.bundleSize || 1), 0);
   const cartTotal = () => readCart().reduce((s, i) => s + i.price * i.qty, 0);
   const fmt = (n) => '$' + n.toFixed(2).replace(/\.00$/, '');
 
@@ -93,9 +95,13 @@
       const linkClose = body.querySelector('[data-close-cart]');
       linkClose && linkClose.addEventListener('click', () => openDrawer(false));
     } else {
-      body.innerHTML = items.map(it => `
+      body.innerHTML = items.map(it => {
+        const thumb = it.image
+          ? `<img src="${it.image}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">`
+          : productIcon(it.icon);
+        return `
         <div class="cart-item" data-id="${it.id}">
-          <div class="cart-thumb">${productIcon(it.icon)}</div>
+          <div class="cart-thumb" style="overflow:hidden;">${thumb}</div>
           <div>
             <strong>${it.title}</strong>
             <small>${it.cat}</small>
@@ -103,12 +109,12 @@
               <button data-qty="-1" aria-label="Decrease">−</button>
               <span>${it.qty}</span>
               <button data-qty="1" aria-label="Increase">+</button>
-              <button data-remove style="margin-left:0.6rem;color:var(--mute);">remove</button>
+              <button data-remove style="margin-left:0.6rem;color:var(--gray-2);">remove</button>
             </div>
           </div>
           <div class="line-total">${fmt(it.price * it.qty)}</div>
-        </div>
-      `).join('');
+        </div>`;
+      }).join('');
     }
     if (totalEl) totalEl.textContent = fmt(cartTotal());
   };
@@ -149,12 +155,21 @@
     const btn = e.target.closest('[data-add-cart]');
     if (!btn) return;
     e.preventDefault();
+    let bundleItems = null;
+    if (btn.dataset.bundleItems) {
+      try { bundleItems = JSON.parse(decodeURIComponent(btn.dataset.bundleItems)); }
+      catch { bundleItems = null; }
+    }
     const item = {
       id: btn.dataset.id,
       title: btn.dataset.title,
       cat: btn.dataset.cat || '',
       price: parseFloat(btn.dataset.price),
       icon: btn.dataset.icon || 'box',
+      image: btn.dataset.image || '',
+      variantId: btn.dataset.variantId || '',
+      bundleItems: bundleItems,
+      bundleSize: parseInt(btn.dataset.bundleSize || '0', 10) || 0,
       qty: parseInt(btn.dataset.qty || '1', 10),
     };
     const cart = readCart();
@@ -250,6 +265,36 @@
     };
     return icons[kind] || icons.box;
   }
+
+  /* ---------- Shopify checkout redirect ---------- */
+  // The cart drawer's Checkout button builds a Shopify cart URL with all the
+  // variants in the cart (expanding bundles into their component variants) and
+  // sends the shopper to smartlotelectronics.myshopify.com for real checkout.
+  const SHOP_DOMAIN = 'smartlotelectronics.myshopify.com';
+  function buildShopifyCartUrl() {
+    const items = readCart();
+    const segments = [];
+    items.forEach(it => {
+      if (it.bundleItems && it.bundleItems.length) {
+        // Bundle: add each component variant, multiplied by the bundle qty
+        it.bundleItems.forEach(li => {
+          segments.push(`${li.variantId}:${(li.qty || 1) * (it.qty || 1)}`);
+        });
+      } else if (it.variantId) {
+        segments.push(`${it.variantId}:${it.qty}`);
+      }
+    });
+    if (!segments.length) return `https://${SHOP_DOMAIN}/`;
+    return `https://${SHOP_DOMAIN}/cart/${segments.join(',')}`;
+  }
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-checkout]');
+    if (!btn) return;
+    e.preventDefault();
+    if (readCart().length === 0) return;
+    btn.textContent = 'Sending you to checkout…';
+    window.location.href = buildShopifyCartUrl();
+  });
 
   /* ---------- Countdown deal banner ---------- */
   const countdownEl = document.querySelector('[data-countdown]');

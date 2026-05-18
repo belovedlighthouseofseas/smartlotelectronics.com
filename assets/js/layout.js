@@ -119,7 +119,7 @@
         <div class="drawer-foot">
           <div class="total"><span>Subtotal</span><strong data-drawer-total>$0</strong></div>
           <small>Bonus item auto-added at checkout. Free shipping over $35.</small>
-          <a href="#" class="btn btn-primary">Checkout</a>
+          <a href="#" class="btn btn-primary" data-checkout>Checkout on Shopify →</a>
           <button class="btn btn-dark" data-close-cart>Keep shopping</button>
         </div>
       </aside>

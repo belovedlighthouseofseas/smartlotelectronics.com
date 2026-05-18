@@ -234,17 +234,24 @@
   // Populate data-add-cart attributes on both PDP buttons (desktop + sticky)
   // so main.js's delegated click handler picks them up.
   const addBtns = document.querySelectorAll('[data-pdp-add]');
-  const itemMultiplier = product.qty || (isBundle ? product.items.length : 1);
+  const bundleSize = isBundle ? (product.qty || product.items.length) : 0;
   addBtns.forEach(b => {
     b.dataset.id = product.id;
     b.dataset.title = product.name;
     b.dataset.cat = isBundle ? 'Bundle' : product.sub;
     b.dataset.price = product.price;
     b.dataset.icon = product.icon || (isBundle ? 'cube' : 'box');
-    b.dataset.qty = String(itemMultiplier);
+    b.dataset.qty = '1';
+    if (isBundle) {
+      b.dataset.bundleSize = String(bundleSize);
+      b.dataset.bundleItems = encodeURIComponent(JSON.stringify(product.lineItems || []));
+    } else {
+      b.dataset.variantId = product.variantId || '';
+      b.dataset.image = product.image || '';
+    }
   });
 
-  // Stepper updates data-qty on both buttons
+  // Stepper updates data-qty (number of units / bundles) on both buttons
   const stepperVal = document.querySelector('[data-stepper-val]');
   document.querySelector('[data-stepper]').addEventListener('click', (e) => {
     const dir = e.target.dataset.step;
@@ -252,7 +259,7 @@
     let n = parseInt(stepperVal.textContent, 10) + parseInt(dir, 10);
     n = Math.max(1, Math.min(99, n));
     stepperVal.textContent = n;
-    addBtns.forEach(b => { b.dataset.qty = String(itemMultiplier * n); });
+    addBtns.forEach(b => { b.dataset.qty = String(n); });
   });
 
   // Sticky bar

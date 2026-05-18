@@ -1,93 +1,274 @@
-/* Smart Lot Electronics — shared product database + card renderer */
+/* Smart Lot Electronics — product database (mirrors Shopify) + card renderer */
 (function () {
   'use strict';
 
-  // ---------- SVG icon library ----------
-  const ICONS = {
-    earbuds: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M65 100c0-20 8-40 25-40s25 20 25 40v25a15 15 0 0 1-15 15h-10v-50h25M65 100v25a15 15 0 0 0 15 15h10v-50H65"/></svg>',
-    speaker: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="50" y="60" width="100" height="80" rx="10"/><circle cx="100" cy="100" r="22"/><circle cx="100" cy="100" r="8" fill="currentColor"/><circle cx="68" cy="80" r="3" fill="currentColor"/><circle cx="132" cy="80" r="3" fill="currentColor"/></svg>',
-    headphones: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M60 100v25a10 10 0 0 0 10 10h10v-50H60M140 100v25a10 10 0 0 1-10 10h-10v-50h20"/><path d="M60 100c0-25 18-50 40-50s40 25 40 50"/></svg>',
-    soundbar: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="20" y="80" width="160" height="40" rx="6"/><circle cx="50" cy="100" r="6"/><circle cx="100" cy="100" r="10"/><circle cx="150" cy="100" r="6"/></svg>',
-    cube: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="60" y="60" width="80" height="80" rx="8"/><circle cx="100" cy="100" r="20"/></svg>',
-    receiver: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="50" y="70" width="100" height="60" rx="8"/><path d="M75 90h50M75 110h50"/></svg>',
-    watch: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="70" y="40" width="60" height="120" rx="14"/><circle cx="100" cy="100" r="22"/><path d="M100 88v12l8 6"/><path d="M100 40v-8M100 168v-8"/></svg>',
-    ring: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><circle cx="100" cy="100" r="50"/><circle cx="100" cy="100" r="32"/></svg>',
-    tracker: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="78" y="50" width="44" height="100" rx="10"/><circle cx="100" cy="100" r="14"/></svg>',
-    scale: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="60" width="120" height="100" rx="8"/><rect x="80" y="80" width="40" height="20" rx="3"/></svg>',
-    plug: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="60" y="40" width="80" height="120" rx="10"/><path d="M80 80v20M120 80v20"/><circle cx="100" cy="130" r="6"/></svg>',
-    sensor: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><circle cx="100" cy="100" r="55"/><circle cx="100" cy="100" r="30"/><circle cx="100" cy="100" r="8" fill="currentColor"/></svg>',
-    cable: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M40 100c20 0 20-15 40-15s20 15 40 15 20-15 40-15"/><rect x="30" y="92" width="20" height="16" rx="3"/><rect x="150" y="92" width="20" height="16" rx="3"/></svg>',
-    powerbank: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="60" width="120" height="80" rx="10"/><path d="M55 80h.01M65 80h.01M75 80h.01"/><rect x="100" y="75" width="50" height="50" rx="4"/><path d="M115 95l8 8 12-15"/></svg>',
-    wallcharger: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="60" y="40" width="80" height="120" rx="12"/><path d="M100 70l-10 25h20l-10 25"/></svg>',
-    wirelesspad: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><circle cx="100" cy="100" r="50"/><circle cx="100" cy="100" r="30"/><path d="M100 70v-10M100 140v-10M70 100h-10M140 100h-10"/></svg>',
-    adapter: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="80" width="40" height="40" rx="4"/><rect x="120" y="80" width="40" height="40" rx="4"/><path d="M80 100h40"/></svg>',
-    carcharger: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M60 70v60a10 10 0 0 0 10 10h60a10 10 0 0 0 10-10V70"/><path d="M55 70h90l-6-12H61z"/><path d="M85 95l30 30M115 95l-30 30"/></svg>',
-    mount: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><circle cx="100" cy="100" r="36"/><circle cx="100" cy="100" r="14" fill="currentColor"/><path d="M100 64v-20M100 156v-20M64 100h-20M156 100h-20"/></svg>',
-    fm: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="60" y="50" width="80" height="110" rx="8"/><circle cx="100" cy="100" r="18"/><path d="M85 130h30"/></svg>',
-    dashcam: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="70" width="100" height="60" rx="10"/><path d="M140 90l30-12v44l-30-12z"/><circle cx="80" cy="100" r="14"/></svg>',
-    tire: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><circle cx="100" cy="100" r="55"/><circle cx="100" cy="100" r="20"/><path d="M100 45v15M100 140v15M45 100h15M140 100h15"/></svg>',
-    cup: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M70 70h60v70a10 10 0 0 1-10 10H80a10 10 0 0 1-10-10z"/><path d="M60 70h80M85 60h30"/></svg>',
-    stand: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="70" y="40" width="60" height="90" rx="6"/><path d="M50 145h100M100 130v25M70 70h60"/></svg>',
-    hub: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="70" width="120" height="60" rx="6"/><rect x="55" y="85" width="20" height="30" rx="2"/><rect x="85" y="85" width="20" height="30" rx="2"/><rect x="115" y="85" width="20" height="30" rx="2"/></svg>',
-    webcam: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><circle cx="100" cy="80" r="30"/><circle cx="100" cy="80" r="14"/><path d="M80 110h40v20H80zM90 130h20l-5 25h-10z"/></svg>',
-    ledstrip: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M40 60h120v15H40zM40 95h120v15H40zM40 130h120v15H40z"/><circle cx="60" cy="67" r="3" fill="currentColor"/><circle cx="60" cy="102" r="3" fill="currentColor"/><circle cx="60" cy="137" r="3" fill="currentColor"/></svg>',
-    doorbell: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="65" y="40" width="70" height="120" rx="8"/><circle cx="100" cy="80" r="14"/><circle cx="100" cy="130" r="10"/></svg>',
-    travel: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="60" width="120" height="100" rx="14"/><rect x="65" y="85" width="20" height="30" rx="2"/><rect x="115" y="85" width="20" height="30" rx="2"/></svg>',
-    bundle2: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="30" y="60" width="60" height="80" rx="6"/><rect x="110" y="60" width="60" height="80" rx="6"/></svg>',
-    bundle3: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="15" y="60" width="45" height="80" rx="6"/><rect x="77" y="60" width="45" height="80" rx="6"/><rect x="140" y="60" width="45" height="80" rx="6"/></svg>',
+  // ---------- Shopify config ----------
+  const SHOP = {
+    domain: 'smartlotelectronics.myshopify.com',
+    productUrl: (handle) => `https://smartlotelectronics.myshopify.com/products/${handle}`,
+    // Build a Shopify checkout URL from a list of {variantId, qty}.
+    // Format: https://shop.myshopify.com/cart/VARIANT_ID:QTY,VARIANT_ID:QTY
+    cartUrl: (items) => {
+      if (!items.length) return `https://smartlotelectronics.myshopify.com/`;
+      const segs = items.map(i => `${i.variantId}:${i.qty}`).join(',');
+      return `https://smartlotelectronics.myshopify.com/cart/${segs}`;
+    },
   };
 
-  // ---------- Products ----------
+  // ---------- Fallback SVG icons (when product has no image) ----------
+  const ICONS = {
+    earbuds:    '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M65 100c0-20 8-40 25-40s25 20 25 40v25a15 15 0 0 1-15 15h-10v-50h25M65 100v25a15 15 0 0 0 15 15h10v-50H65"/></svg>',
+    speaker:    '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="50" y="60" width="100" height="80" rx="10"/><circle cx="100" cy="100" r="22"/><circle cx="100" cy="100" r="8" fill="currentColor"/></svg>',
+    tracker:    '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="60" y="60" width="80" height="50" rx="6"/><circle cx="100" cy="85" r="8"/></svg>',
+    ledstrip:   '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M40 60h120v15H40zM40 95h120v15H40zM40 130h120v15H40z"/><circle cx="60" cy="67" r="3" fill="currentColor"/><circle cx="60" cy="102" r="3" fill="currentColor"/></svg>',
+    plug:       '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="60" y="40" width="80" height="120" rx="10"/><path d="M80 80v20M120 80v20"/></svg>',
+    watch:      '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="70" y="40" width="60" height="120" rx="14"/><circle cx="100" cy="100" r="22"/></svg>',
+    powerbank:  '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="60" width="120" height="80" rx="10"/><rect x="100" y="75" width="50" height="50" rx="4"/></svg>',
+    station:    '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><circle cx="60" cy="100" r="22"/><circle cx="100" cy="100" r="22"/><circle cx="140" cy="100" r="22"/></svg>',
+    cable:      '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M40 100c20 0 20-15 40-15s20 15 40 15 20-15 40-15"/><rect x="30" y="92" width="20" height="16" rx="3"/><rect x="150" y="92" width="20" height="16" rx="3"/></svg>',
+    carmount:   '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><circle cx="100" cy="100" r="36"/><circle cx="100" cy="100" r="14" fill="currentColor"/></svg>',
+    wallet:     '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="60" width="120" height="80" rx="10"/><path d="M40 90h120"/></svg>',
+    multitool:  '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M50 50l100 100M50 150l100-100"/></svg>',
+    grip:       '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="70" y="40" width="60" height="120" rx="8"/><circle cx="100" cy="140" r="14"/></svg>',
+    card:       '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="30" y="60" width="140" height="80" rx="6"/><path d="M30 85h140"/></svg>',
+    cablemag:   '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="40" y="60" width="30" height="80" rx="3"/><rect x="85" y="60" width="30" height="80" rx="3"/><rect x="130" y="60" width="30" height="80" rx="3"/></svg>',
+    flashlight: '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="70" y="50" width="60" height="100" rx="6"/><path d="M85 50V30h30v20"/></svg>',
+    stand:      '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><path d="M40 60h120l-20 60H60z"/><rect x="80" y="120" width="40" height="20"/></svg>',
+    lens:       '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><circle cx="100" cy="100" r="45"/><circle cx="100" cy="100" r="25"/><circle cx="100" cy="100" r="10" fill="currentColor"/></svg>',
+    cube:       '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2"><rect x="60" y="60" width="80" height="80" rx="8"/></svg>',
+  };
+
+  // ---------- Products (synced with smartlotelectronics.myshopify.com) ----------
   const PRODUCTS = [
-    // AUDIO
-    { id: 'earbuds-pro', name: 'Wireless Earbuds Pro', cat: 'audio', sub: 'Audio · Earbuds', price: 19.99, compare: 34.99, rating: 4.8, reviews: 1200, icon: 'earbuds', variant: 'glow', badges: ['bonus','bundle'], tag: 'Staff Pick', tagColor: 'blue', bullets: ['Active noise canceling', '30-hour total battery with case', 'IPX5 sweat-proof', 'USB-C fast charge'] },
-    { id: 'boom-speaker', name: 'Bluetooth Speaker BOOM', cat: 'audio', sub: 'Audio · Speaker', price: 29.99, compare: 49.99, rating: 4.6, reviews: 842, icon: 'speaker', badges: ['bonus'], tag: 'New Drop', tagColor: 'blue', bullets: ['360° sound', '16-hour playtime', 'IPX7 waterproof', 'Pair two for stereo'] },
-    { id: 'headphones-pro', name: 'Wireless Headphones Pro', cat: 'audio', sub: 'Audio · Headphones', price: 39.99, compare: 79.99, rating: 4.9, reviews: 2700, icon: 'headphones', variant: 'glow', badges: ['bonus','bundle'], tag: '−50%', bullets: ['40mm dynamic drivers', '50-hour battery', 'Memory foam ear cups', 'Bluetooth 5.3 multipoint'] },
-    { id: 'soundbar-mini', name: 'Soundbar Mini', cat: 'audio', sub: 'Audio · Soundbar', price: 49.99, compare: 79.99, rating: 4.5, reviews: 312, icon: 'soundbar', badges: ['bonus'], tag: '−38%', bullets: ['2.0 stereo', 'Optical + AUX + Bluetooth', 'Wall mount included', 'Remote included'] },
-    { id: 'cube-speaker', name: 'Mini Speaker Cube', cat: 'audio', sub: 'Audio · Speaker', price: 16.99, compare: 26.99, rating: 4.4, reviews: 528, icon: 'cube', badges: ['bonus'], bullets: ['Pocket-sized', '8-hour battery', 'Bluetooth 5.0', 'Built-in mic for calls'] },
-    { id: 'bt-receiver', name: 'Bluetooth Receiver', cat: 'audio', sub: 'Audio · Adapter', price: 11.99, compare: 19.99, rating: 4.6, reviews: 1820, icon: 'receiver', badges: ['bonus'], bullets: ['Make any 3.5mm port wireless', '10-hour battery', 'Hands-free calls', 'aptX low latency'] },
+    // AUDIO ============================================
+    {
+      id: 'pro-wireless-earbuds', handle: 'pro-wireless-earbuds-with-charging-case',
+      name: 'Pro Wireless Earbuds', cat: 'audio', sub: 'Audio · Earbuds',
+      price: 39.99, rating: 4.8, reviews: 1240, variant: 'glow',
+      badges: ['bonus', 'bundle'], tag: 'Staff Pick', tagColor: 'blue',
+      icon: 'earbuds', variantId: '49053864689907',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1606220945770-b5b6c2c55bf1.jpg?v=1778789651',
+      tagline: 'Studio sound. Pocket size. All-day battery.',
+      bullets: ['Tuned for music, podcasts, and crystal-clear calls', 'Compact charging case fits the smallest pocket', 'Bluetooth 5.3 multipoint', 'IPX5 sweat-proof'],
+    },
+    {
+      id: 'waterproof-bluetooth-speaker', handle: 'waterproof-bluetooth-mini-speaker',
+      name: 'Waterproof Bluetooth Mini Speaker', cat: 'audio', sub: 'Audio · Speaker',
+      price: 34.99, rating: 4.7, reviews: 880,
+      badges: ['bonus'], tag: 'New Drop', tagColor: 'blue',
+      icon: 'speaker', variantId: '49053868294387',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1608043152269-423dbba4e7e1.jpg?v=1778789749',
+      tagline: 'Pocket-size. Truck-size sound.',
+      bullets: ['5W driver punches above its weight', '14-hour battery on a single charge', 'Clips onto any bag or belt', 'IPX7 — survives the beach'],
+    },
 
-    // SMART DEVICES
-    { id: 'watch-fitx', name: 'Smartwatch Fit X', cat: 'smart', sub: 'Smart · Watch', price: 34.99, compare: 54.99, rating: 4.9, reviews: 3100, icon: 'watch', variant: 'limited', stockLeft: 7, stockTotal: 40, badges: ['bonus','low'], tag: 'Low Stock', tagColor: 'red', bullets: ['Heart rate + SpO2', '7-day battery', 'iOS + Android', 'IP68 swim-proof'] },
-    { id: 'smart-ring', name: 'Smart Ring', cat: 'smart', sub: 'Smart · Wearable', price: 89.99, compare: 129.99, rating: 4.5, reviews: 420, icon: 'ring', badges: ['bonus'], tag: 'New', tagColor: 'blue', bullets: ['Sleep tracking', 'No subscription', '5-day battery', 'Titanium body'] },
-    { id: 'fit-tracker', name: 'Fitness Tracker Slim', cat: 'smart', sub: 'Smart · Tracker', price: 24.99, compare: 39.99, rating: 4.4, reviews: 890, icon: 'tracker', badges: ['bonus'], bullets: ['Step + calorie counter', '10-day battery', 'Sleep stages', 'Water resistant'] },
-    { id: 'smart-scale', name: 'Smart Scale', cat: 'smart', sub: 'Smart · Health', price: 29.99, compare: 49.99, rating: 4.3, reviews: 612, icon: 'scale', badges: ['bonus'], bullets: ['13 body metrics', 'Up to 8 users', 'iOS + Android app', 'Works without phone'] },
-    { id: 'smart-plug', name: 'Smart Plug 4-Pack', cat: 'smart', sub: 'Smart · Home', price: 19.99, compare: 34.99, rating: 4.7, reviews: 2400, icon: 'plug', badges: ['bonus','bundle'], tag: 'Hot', tagColor: 'red', bullets: ['Alexa + Google', 'No hub required', 'Schedule + timer', 'Energy monitoring'] },
-    { id: 'bedroom-sensor', name: 'Motion + Temp Sensor', cat: 'smart', sub: 'Smart · Sensor', price: 14.99, compare: 24.99, rating: 4.5, reviews: 318, icon: 'sensor', badges: ['bonus'], bullets: ['Battery-powered', 'Pairs with smart plugs', 'Magnetic mount', '2-year battery life'] },
+    // SMART DEVICES ====================================
+    {
+      id: 'smartfind-tracker', handle: 'smartfind-bluetooth-tracker-card',
+      name: 'SmartFind Bluetooth Tracker Card', cat: 'smart', sub: 'Smart · Tracker',
+      price: 29.99, rating: 4.6, reviews: 720,
+      badges: ['bonus'], tag: 'New', tagColor: 'blue',
+      icon: 'tracker', variantId: '49053862658291',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1611532736597-de2d4265fba3.jpg?v=1778789601',
+      tagline: 'Never lose your wallet again.',
+      bullets: ['Credit-card thin — slips into any wallet', 'Works with Apple Find My out of the box', '1-year replaceable battery', 'Bluetooth 5.0'],
+    },
+    {
+      id: 'smart-led-strip', handle: 'smart-rgb-led-strip-lights-16ft',
+      name: 'Smart RGB LED Strip Lights (16ft)', cat: 'smart', sub: 'Smart · Lighting',
+      price: 32.99, rating: 4.5, reviews: 1080,
+      badges: ['bonus'],
+      icon: 'ledstrip', variantId: '49053866459379',
+      tagline: 'Upgrade any room in 10 minutes.',
+      bullets: ['App-controlled, music-synced', '16 million colors + scene modes', 'No control hub needed', '32ft option available'],
+    },
+    {
+      id: 'smart-wifi-plug', handle: 'smart-wifi-plug-4-pack',
+      name: 'Smart WiFi Plug (4-Pack)', cat: 'smart', sub: 'Smart · Home',
+      price: 24.99, rating: 4.7, reviews: 2410,
+      badges: ['bonus', 'bundle'], tag: 'Hot', tagColor: 'red',
+      icon: 'plug', variantId: '49053867606259',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1558002038-1055907df827.jpg?v=1778789739',
+      tagline: 'Make any outlet smart — four at once.',
+      bullets: ['Voice control with Alexa + Google', 'Schedule + timer + energy monitoring', 'No hub required', 'Compact — won\'t block adjacent plugs'],
+    },
+    {
+      id: 'leather-watch-band', handle: 'premium-leather-apple-watch-band',
+      name: 'Premium Leather Apple Watch Band', cat: 'smart', sub: 'Smart · Watch Band',
+      price: 27.99, rating: 4.6, reviews: 460,
+      badges: ['bonus'],
+      icon: 'watch', variantId: '49053865804019',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1579586337278-3befd40fd17a.jpg?v=1778789668',
+      tagline: 'Dress up the watch you wear every day.',
+      bullets: ['Full-grain leather that softens with wear', 'Fits 38–49mm cases', 'Stainless steel buckle', 'Saddle Brown + Onyx Black'],
+    },
 
-    // CHARGING
-    { id: 'fast-cable', name: 'Fast Charging Cable 6ft', cat: 'charging', sub: 'Charging · USB-C', price: 9.99, compare: 19.99, rating: 4.7, reviews: 5200, icon: 'cable', badges: ['bonus'], tag: '−50%', bullets: ['100W PD', 'Braided nylon', '10,000 bend rated', 'USB-C to USB-C'] },
-    { id: 'powerbank-20k', name: 'Mega Power Bank 20K', cat: 'charging', sub: 'Charging · 20,000mAh', price: 24.99, compare: 44.99, rating: 4.8, reviews: 1830, icon: 'powerbank', badges: ['bonus','bundle'], tag: '−44%', bullets: ['Charges phones 5×', 'PD + QC fast charge', 'Digital % display', 'USB-A + USB-C in/out'] },
-    { id: 'wall-100w', name: '100W GaN Wall Charger', cat: 'charging', sub: 'Charging · 100W', price: 34.99, compare: 59.99, rating: 4.9, reviews: 740, icon: 'wallcharger', badges: ['bonus'], bullets: ['Charges laptops + phones', '4 ports', 'GaN tech — runs cool', 'Foldable plug'] },
-    { id: 'wireless-pad', name: 'Wireless Charge Pad', cat: 'charging', sub: 'Charging · Wireless', price: 16.99, compare: 29.99, rating: 4.4, reviews: 920, icon: 'wirelesspad', badges: ['bonus'], bullets: ['Qi 15W', 'Works through cases', 'LED indicator', 'Non-slip surface'] },
-    { id: 'usbc-adapter', name: 'USB-C to USB-A Adapter', cat: 'charging', sub: 'Charging · Adapter', price: 7.99, compare: 12.99, rating: 4.6, reviews: 1100, icon: 'adapter', badges: ['bonus'], bullets: ['Aluminum body', 'USB 3.0 speeds', 'Plug-and-play', 'Pack of 2'] },
-    { id: 'powerbank-mini', name: 'Mini Power Bank 10K', cat: 'charging', sub: 'Charging · 10,000mAh', price: 14.99, compare: 24.99, rating: 4.5, reviews: 660, icon: 'powerbank', badges: ['bonus'], bullets: ['Pocket-sized', '2-3 full phone charges', 'USB-C in + out', 'LED battery display'] },
+    // CHARGING ========================================
+    {
+      id: 'magsnap-powerbank', handle: 'magsnap-10-000mah-magnetic-power-bank',
+      name: 'MagSnap 10,000mAh Power Bank', cat: 'charging', sub: 'Charging · Power Bank',
+      price: 54.99, rating: 4.8, reviews: 1530, variant: 'glow',
+      badges: ['bonus', 'bundle'], tag: 'Editor\'s Pick', tagColor: 'blue',
+      icon: 'powerbank', variantId: '49053862723827',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1609091839311-d5365f9ff1c5.jpg?v=1778789606',
+      tagline: 'Snap on. Power up. Walk out.',
+      bullets: ['Wireless MagSafe-compatible attachment', 'Charges iPhone 12+ without cables', 'USB-C PD for laptops too', '10,000mAh — 2.5 full phone charges'],
+    },
+    {
+      id: '3in1-charging-station', handle: '3-in-1-foldable-wireless-charging-station',
+      name: '3-in-1 Foldable Wireless Charging Station', cat: 'charging', sub: 'Charging · Station',
+      price: 49.99, rating: 4.6, reviews: 640,
+      badges: ['bonus'],
+      icon: 'station', variantId: '49053862854899',
+      tagline: 'One pad. Three devices. Zero cables.',
+      bullets: ['iPhone + AirPods + Apple Watch at once', 'Folds flat for travel', 'Qi-certified', 'MagSafe-compatible iPhone alignment'],
+    },
+    {
+      id: 'usbc-cable-6ft', handle: 'braided-usb-c-fast-charging-cable',
+      name: 'Braided USB-C Fast Charging Cable', cat: 'charging', sub: 'Charging · USB-C',
+      price: 12.99, rating: 4.7, reviews: 5240,
+      badges: ['bonus'], tag: 'Best Seller', tagColor: 'blue',
+      icon: 'cable', variantId: '49053864263923',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1583394838336-acd977736f90.jpg?v=1778789642',
+      tagline: 'The cable that outlives your phone.',
+      bullets: ['Nylon-braided shell, 10,000 bend rated', '100W power delivery (laptop-capable)', 'Reinforced connectors', '3/6/10 ft + black/graphite options'],
+    },
 
-    // CAR TECH
-    { id: 'car-charger', name: 'Dual USB Car Charger', cat: 'car', sub: 'Car · Charger', price: 12.99, compare: 22.99, rating: 4.5, reviews: 612, icon: 'carcharger', badges: ['bonus'], tag: 'Hot', tagColor: 'red', bullets: ['PD 30W + QC 18W', 'Works for laptops too', 'LED status', 'Aluminum housing'] },
-    { id: 'mag-mount', name: 'Magnetic Vent Mount', cat: 'car', sub: 'Car · Mount', price: 9.99, compare: 15.99, rating: 4.6, reviews: 880, icon: 'mount', badges: ['bonus'], bullets: ['MagSafe compatible', 'Strong neodymium', 'No phone bumper needed', 'Vent + dash fit'] },
-    { id: 'fm-trans', name: 'FM Transmitter Bluetooth', cat: 'car', sub: 'Car · Audio', price: 17.99, compare: 29.99, rating: 4.3, reviews: 412, icon: 'fm', badges: ['bonus'], bullets: ['Crystal-clear audio', 'Hands-free calls', 'USB charging port', 'Color display'] },
-    { id: 'dashcam', name: '1080p Dash Cam', cat: 'car', sub: 'Car · Camera', price: 39.99, compare: 69.99, rating: 4.7, reviews: 240, icon: 'dashcam', badges: ['bonus'], tag: '−43%', bullets: ['Loop recording', 'G-sensor crash lock', 'Night vision', '170° wide angle'] },
-    { id: 'tire-monitor', name: 'Tire Pressure Monitor', cat: 'car', sub: 'Car · Safety', price: 49.99, compare: 79.99, rating: 4.5, reviews: 320, icon: 'tire', badges: ['bonus'], bullets: ['4 sensors + display', 'Real-time alerts', 'Solar + USB powered', 'Easy 5-min install'] },
-    { id: 'cup-holder', name: 'Vent Cup Holder', cat: 'car', sub: 'Car · Accessory', price: 14.99, compare: 22.99, rating: 4.2, reviews: 188, icon: 'cup', badges: ['bonus'], bullets: ['Fits any vent', 'Holds 32oz', 'Phone slot included', 'Non-slip silicone'] },
+    // CAR TECH ========================================
+    {
+      id: 'wireless-car-mount', handle: 'wireless-magnetic-car-phone-mount-charger',
+      name: 'Wireless Magnetic Car Mount + Charger', cat: 'car', sub: 'Car · Mount',
+      price: 36.99, rating: 4.6, reviews: 612,
+      badges: ['bonus'], tag: 'Hot', tagColor: 'red',
+      icon: 'carmount', variantId: '49053868458227',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1606293459339-aa5d34a7b0e1.jpg?v=1778789756',
+      tagline: 'Drop in. Drive off. Fully charged.',
+      bullets: ['Strong neodymium hold', 'Wireless fast-charging through any MagSafe case', 'Vent + dashboard kit included', 'No phone bumper needed'],
+    },
 
-    // EVERYDAY TECH
-    { id: 'phone-stand', name: 'Adjustable Phone Stand', cat: 'everyday', sub: 'Everyday · Stand', price: 14.99, compare: 24.99, rating: 4.4, reviews: 388, icon: 'stand', badges: ['bonus'], bullets: ['Aluminum body', 'Foldable + portable', 'Fits phones + tablets', 'Cable routing slot'] },
-    { id: 'usb-hub', name: 'USB Hub 4-Port', cat: 'everyday', sub: 'Everyday · Hub', price: 18.99, compare: 29.99, rating: 4.7, reviews: 1100, icon: 'hub', badges: ['bonus'], bullets: ['USB 3.0 speeds', 'Bus powered', '5Gbps transfer', 'Slim aluminum'] },
-    { id: 'webcam-hd', name: '1080p HD Webcam', cat: 'everyday', sub: 'Everyday · Webcam', price: 24.99, compare: 44.99, rating: 4.6, reviews: 720, icon: 'webcam', badges: ['bonus'], tag: '−44%', bullets: ['Auto low-light correction', 'Dual mics with noise cancel', 'Privacy cover', 'Tripod mount'] },
-    { id: 'led-strip', name: 'Smart LED Strip 5m', cat: 'everyday', sub: 'Everyday · Lighting', price: 19.99, compare: 32.99, rating: 4.5, reviews: 980, icon: 'ledstrip', badges: ['bonus'], bullets: ['16M colors', 'Music sync', 'App + remote control', 'Adhesive backing'] },
-    { id: 'doorbell', name: 'Smart Doorbell 2K', cat: 'everyday', sub: 'Everyday · Security', price: 49.99, compare: 89.99, rating: 4.6, reviews: 410, icon: 'doorbell', badges: ['bonus'], tag: '−44%', bullets: ['2K HD video', 'Wide 160° view', 'Two-way talk', 'No subscription required'] },
-    { id: 'travel-adapter', name: 'Universal Travel Adapter', cat: 'everyday', sub: 'Everyday · Travel', price: 22.99, compare: 34.99, rating: 4.5, reviews: 530, icon: 'travel', badges: ['bonus'], bullets: ['Works in 150+ countries', '4 USB ports', 'Surge protection', 'Compact for carry-on'] },
+    // EVERYDAY TECH ===================================
+    {
+      id: 'rfid-wallet', handle: 'slim-magnetic-rfid-wallet',
+      name: 'Slim Magnetic RFID Wallet', cat: 'everyday', sub: 'Everyday · Wallet',
+      price: 34.99, rating: 4.7, reviews: 980,
+      badges: ['bonus'],
+      icon: 'wallet', variantId: '49053862396147',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1627123424574-724758594e93.jpg?v=1778789590',
+      tagline: 'Carry less. Show up better.',
+      bullets: ['Magnetic split design — instant card access', '8-card capacity', 'RFID-blocking', 'Black / Brown / Navy'],
+    },
+    {
+      id: 'edc-multitool-keychain', handle: 'titanium-edc-keychain-multi-tool',
+      name: 'Titanium EDC Keychain Multi-Tool', cat: 'everyday', sub: 'Everyday · EDC',
+      price: 19.99, rating: 4.6, reviews: 420,
+      badges: ['bonus'],
+      icon: 'multitool', variantId: '49053862527219',
+      tagline: 'Eight tools. One keychain.',
+      bullets: ['Pocket-sized titanium build', 'Doesn\'t rattle on your keys', 'Bottle opener, screwdriver, pry bar, more', 'TSA-friendly — no blade'],
+    },
+    {
+      id: 'maggrip-stand', handle: 'maggrip-phone-stand-ring-holder',
+      name: 'MagGrip Phone Stand &amp; Ring Holder', cat: 'everyday', sub: 'Everyday · Grip',
+      price: 24.99, rating: 4.5, reviews: 715,
+      badges: ['bonus', 'bundle'],
+      icon: 'grip', variantId: '49053863575795',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1601784551446-20c9e07cdbdb.jpg?v=1778789630',
+      tagline: 'One accessory. Three jobs.',
+      bullets: ['Magnetic grip, kickstand, and ring holder', 'Ultra-thin — fits in any pocket', 'Snaps to any MagSafe phone', 'Black / Silver / Rose Gold'],
+    },
+    {
+      id: 'multitool-wallet-card', handle: 'edc-multi-tool-wallet-card',
+      name: 'EDC Multi-Tool Wallet Card', cat: 'everyday', sub: 'Everyday · EDC',
+      price: 22.99, rating: 4.5, reviews: 388,
+      badges: ['bonus'],
+      icon: 'card', variantId: '49053865378035',
+      tagline: '16 tools. Credit card size.',
+      bullets: ['Stainless steel construction', 'Bottle opener, ruler, hex keys, more', 'Fits next to your debit card', 'TSA-friendly'],
+    },
+    {
+      id: 'magnetic-cable-strips', handle: 'magnetic-cable-management-strips-6-pack',
+      name: 'Magnetic Cable Management Strips (6-Pack)', cat: 'everyday', sub: 'Everyday · Desk',
+      price: 12.99, rating: 4.6, reviews: 1102,
+      badges: ['bonus'],
+      icon: 'cablemag', variantId: '49053866328307',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1601445638532-3c6f6c3aa1d6.jpg?v=1778789687',
+      tagline: 'The end of cable spaghetti.',
+      bullets: ['Stick-on strong adhesive', 'Magnetic — easy to add/remove cables', '6 strips per pack', 'Works on desk, nightstand, wall'],
+    },
+    {
+      id: 'mini-flashlight', handle: 'mini-tactical-pocket-flashlight-usb-c-rechargeable',
+      name: 'Mini Tactical Pocket Flashlight', cat: 'everyday', sub: 'Everyday · EDC',
+      price: 18.99, rating: 4.7, reviews: 1485,
+      badges: ['bonus'], tag: '−40%',
+      icon: 'flashlight', variantId: '49053866721523',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1568438350562-2cae6d394ad0.jpg?v=1778789704',
+      tagline: '1,000 lumens. Fits on your keychain.',
+      bullets: ['Lights up a parking lot', 'USB-C recharge in 90 minutes', 'Keychain-mountable', 'Aircraft-grade aluminum'],
+    },
+    {
+      id: 'aluminum-laptop-stand', handle: 'aluminum-foldable-laptop-stand',
+      name: 'Aluminum Foldable Laptop Stand', cat: 'everyday', sub: 'Everyday · Desk',
+      price: 39.99, rating: 4.7, reviews: 920,
+      badges: ['bonus', 'bundle'], variant: 'glow',
+      icon: 'stand', variantId: '49053866852595',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1593642632559-0c6d3fc62b89.jpg?v=1778789713',
+      tagline: 'Save your neck. Save your back. Carry it anywhere.',
+      bullets: ['Lifts screen to eye level', 'Folds completely flat', 'Aluminum — runs cool, looks clean', 'Silver / Space Grey'],
+    },
+    {
+      id: 'phone-lens-kit', handle: 'pro-phone-lens-kit-wide-macro-fisheye',
+      name: 'Pro Phone Lens Kit (Wide + Macro + Fisheye)', cat: 'everyday', sub: 'Everyday · Photo',
+      price: 26.99, rating: 4.4, reviews: 312,
+      badges: ['bonus'],
+      icon: 'lens', variantId: '49053867016435',
+      image: 'https://cdn.shopify.com/s/files/1/0830/5334/7059/files/photo-1556656793-08538906a9f8.jpg?v=1778789722',
+      tagline: 'DSLR shots from the phone in your pocket.',
+      bullets: ['Wide-angle for landscapes', 'Macro for products + textures', 'Fisheye for content', 'Universal clip — fits any phone'],
+    },
   ];
 
-  // ---------- Bundles ----------
+  // ---------- Bundles (real Shopify variants combined for cart) ----------
   const BUNDLES = [
-    { id: 'bundle-audio', name: 'Audio Starter Bundle', sub: 'Audio · 2-item bundle', items: ['earbuds-pro','phone-stand'], price: 34.99, compare: 44.98, save: 10, unlocks: 'Tier 2', icon2: ['earbuds','stand'], tag: 'Audio Starter' },
-    { id: 'bundle-power', name: '20K Power Bank + Fast Cable', sub: 'Charging · 2-item bundle', items: ['powerbank-20k','fast-cable'], price: 29.99, compare: 34.98, save: 5, unlocks: 'Tier 2', icon2: ['powerbank','cable'], tag: 'Power Combo' },
-    { id: 'bundle-vip', name: 'Watch + Headphones + Speaker', sub: 'Audio & Smart · 3-item bundle', items: ['watch-fitx','headphones-pro','boom-speaker'], price: 99.99, compare: 129.97, save: 30, unlocks: 'Tier 3 VIP', icon2: ['watch','headphones','speaker'], tag: 'VIP Trio', qty: 3 },
-    { id: 'bundle-desk', name: 'Desk Setup: Webcam + Hub + Stand', sub: 'Everyday · 3-item bundle', items: ['webcam-hd','usb-hub','phone-stand'], price: 49.99, compare: 58.97, save: 9, unlocks: 'Tier 3 VIP', icon2: ['webcam','hub','stand'], tag: 'Desk Setup', qty: 3 },
-    { id: 'bundle-car', name: 'Road Trip: Charger + Mount + FM', sub: 'Car · 3-item bundle', items: ['car-charger','mag-mount','fm-trans'], price: 34.99, compare: 40.97, save: 6, unlocks: 'Tier 3 VIP', icon2: ['carcharger','mount','fm'], tag: 'Road Trip', qty: 3 },
-    { id: 'bundle-smart', name: 'Smart Home: Plug 4-Pack + Sensor', sub: 'Smart · 2-item bundle', items: ['smart-plug','bedroom-sensor'], price: 29.99, compare: 34.98, save: 5, unlocks: 'Tier 2', icon2: ['plug','sensor'], tag: 'Smart Starter' },
+    {
+      id: 'bundle-tech-starter', name: 'Tech Starter Bundle',
+      sub: 'Audio + Charging · 2-item bundle',
+      cat: 'bundle', items: ['pro-wireless-earbuds', 'usbc-cable-6ft'],
+      lineItems: [{ variantId: '49053864689907', qty: 1 }, { variantId: '49053864263923', qty: 1 }],
+      price: 44.99, compare: 52.98, save: 8, unlocks: 'Tier 2', qty: 2,
+      icon2: ['earbuds', 'cable'], tag: 'Tech Starter',
+    },
+    {
+      id: 'bundle-magsafe-combo', name: 'MagSafe Power Combo',
+      sub: 'Charging + Car + Grip · 3-item bundle',
+      cat: 'bundle', items: ['magsnap-powerbank', 'wireless-car-mount', 'maggrip-stand'],
+      lineItems: [{ variantId: '49053862723827', qty: 1 }, { variantId: '49053868458227', qty: 1 }, { variantId: '49053863575795', qty: 1 }],
+      price: 99.99, compare: 116.97, save: 17, unlocks: 'Tier 3 VIP', qty: 3,
+      icon2: ['powerbank', 'carmount', 'grip'], tag: 'MagSafe Trio',
+    },
+    {
+      id: 'bundle-audio-pack', name: 'Audio Pack',
+      sub: 'Audio · 2-item bundle',
+      cat: 'bundle', items: ['pro-wireless-earbuds', 'waterproof-bluetooth-speaker'],
+      lineItems: [{ variantId: '49053864689907', qty: 1 }, { variantId: '49053868294387', qty: 1 }],
+      price: 64.99, compare: 74.98, save: 10, unlocks: 'Tier 2', qty: 2,
+      icon2: ['earbuds', 'speaker'], tag: 'Audio Pack',
+    },
+    {
+      id: 'bundle-edc-essentials', name: 'EDC Essentials',
+      sub: 'Everyday · 3-item bundle',
+      cat: 'bundle', items: ['rfid-wallet', 'edc-multitool-keychain', 'mini-flashlight'],
+      lineItems: [{ variantId: '49053862396147', qty: 1 }, { variantId: '49053862527219', qty: 1 }, { variantId: '49053866721523', qty: 1 }],
+      price: 59.99, compare: 73.97, save: 14, unlocks: 'Tier 3 VIP', qty: 3,
+      icon2: ['wallet', 'multitool', 'flashlight'], tag: 'EDC Trio',
+    },
+    {
+      id: 'bundle-smart-home', name: 'Smart Home Starter',
+      sub: 'Smart · 3-item bundle',
+      cat: 'bundle', items: ['smart-wifi-plug', 'smart-led-strip', 'smartfind-tracker'],
+      lineItems: [{ variantId: '49053867606259', qty: 1 }, { variantId: '49053866459379', qty: 1 }, { variantId: '49053862658291', qty: 1 }],
+      price: 74.99, compare: 87.97, save: 13, unlocks: 'Tier 3 VIP', qty: 3,
+      icon2: ['plug', 'ledstrip', 'tracker'], tag: 'Smart Trio',
+    },
   ];
 
   // ---------- Renderers ----------
@@ -96,15 +277,16 @@
     const full = Math.floor(p.rating);
     const half = (p.rating - full) >= 0.5;
     const stars = '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(5 - full - (half ? 1 : 0));
-    return `<div class="stars">${stars} <span class="count">${p.rating.toFixed(1)} (${p.reviews >= 1000 ? (p.reviews/1000).toFixed(1)+'k' : p.reviews})</span></div>`;
+    const reviewLabel = p.reviews >= 1000 ? (p.reviews / 1000).toFixed(1) + 'k' : p.reviews;
+    return `<div class="stars">${stars} <span class="count">${p.rating.toFixed(1)} (${reviewLabel})</span></div>`;
   }
 
   function renderLabels(p) {
     if (!p.badges || !p.badges.length) return '';
     const labels = {
-      bonus: '<span class="lbl-chip bonus">Bonus Eligible</span>',
+      bonus:  '<span class="lbl-chip bonus">Bonus Eligible</span>',
       bundle: '<span class="lbl-chip bundle-eligible">Bundle &amp; Save</span>',
-      low: '<span class="lbl-chip low">Selling fast</span>',
+      low:    '<span class="lbl-chip low">Selling fast</span>',
     };
     return `<div class="prod-labels">${p.badges.map(b => labels[b] || '').join('')}</div>`;
   }
@@ -115,12 +297,11 @@
     return `<span class="prod-tag ${cls}">${p.tag}</span>`;
   }
 
-  function renderStock(p) {
-    if (p.stockLeft == null) return '';
-    const pct = Math.min(100, (p.stockLeft / (p.stockTotal || 50)) * 100);
-    const discount = p.compare ? Math.round((1 - p.price/p.compare) * 100) + '%' : '';
-    return `<div class="stock-bar"><div style="width:${pct}%"></div></div>
-      <div class="stock-text"><span>Only ${p.stockLeft} left</span><span>−${discount}</span></div>`;
+  function renderMedia(p) {
+    if (p.image) {
+      return `<img src="${p.image}" alt="${(p.name || '').replace(/"/g, '&quot;')}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">`;
+    }
+    return ICONS[p.icon] || ICONS.cube;
   }
 
   function renderProductCard(p) {
@@ -130,20 +311,19 @@
       <article class="prod ${variantClass}">
         <div class="prod-media">
           ${renderTag(p)}
-          ${ICONS[p.icon] || ICONS.cube}
+          ${renderMedia(p)}
         </div>
         <div class="prod-body">
           <span class="prod-cat">${p.sub}</span>
           <div class="prod-name"><a href="product.html?id=${p.id}" style="color:inherit">${p.name}</a></div>
           ${renderStars(p)}
           ${renderLabels(p)}
-          ${variant === 'limited' ? renderStock(p) : ''}
           <div class="prod-foot">
             <div class="prod-price">
               <span class="now">$${p.price.toFixed(2).replace(/\.00$/, '')}</span>
               ${p.compare ? `<span class="was">$${p.compare.toFixed(2).replace(/\.00$/, '')}</span>` : ''}
             </div>
-            <button class="prod-add" data-add-cart data-id="${p.id}" data-title="${p.name.replace(/"/g, '&quot;')}" data-cat="${p.sub}" data-price="${p.price}" data-icon="${p.icon}" aria-label="Add ${p.name} to cart">
+            <button class="prod-add" data-add-cart data-id="${p.id}" data-title="${p.name.replace(/"/g, '&quot;')}" data-cat="${p.sub}" data-price="${p.price}" data-icon="${p.icon}" data-variant-id="${p.variantId || ''}" data-image="${p.image || ''}" aria-label="Add ${p.name} to cart">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
             </button>
           </div>
@@ -155,6 +335,8 @@
   function renderBundleCard(b) {
     const iconsHtml = b.icon2.map(k => ICONS[k] || ICONS.cube).reduce((acc, svg, i) =>
       acc + (i > 0 ? '<span class="bundle-plus">+</span>' : '') + svg, '');
+    // Serialize line items into a JSON-encoded data attribute for the cart redirect
+    const lineItemsAttr = encodeURIComponent(JSON.stringify(b.lineItems || []));
     return `
       <article class="prod v-bundle">
         <div class="prod-media">
@@ -174,7 +356,7 @@
               <span class="now">$${b.price.toFixed(2).replace(/\.00$/, '')}</span>
               <span class="was">$${b.compare.toFixed(2).replace(/\.00$/, '')}</span>
             </div>
-            <button class="prod-add" data-add-cart data-id="${b.id}" data-title="${b.name.replace(/"/g, '&quot;')}" data-cat="Bundle" data-price="${b.price}" data-qty="${b.qty || 2}" data-icon="cube" aria-label="Add ${b.name} bundle to cart">
+            <button class="prod-add" data-add-cart data-id="${b.id}" data-title="${b.name.replace(/"/g, '&quot;')}" data-cat="Bundle" data-price="${b.price}" data-qty="1" data-bundle-size="${b.qty || 2}" data-icon="cube" data-bundle-items="${lineItemsAttr}" aria-label="Add ${b.name} bundle to cart">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
             </button>
           </div>
@@ -191,7 +373,7 @@
 
   // ---------- Public API ----------
   window.SLE = {
-    PRODUCTS, BUNDLES, ICONS,
+    SHOP, PRODUCTS, BUNDLES, ICONS,
     findProduct: (id) => PRODUCTS.find(p => p.id === id) || BUNDLES.find(b => b.id === id),
     renderCategory: (cat, selector) => renderGrid(PRODUCTS.filter(p => p.cat === cat), selector),
     renderAll: (selector) => renderGrid(PRODUCTS, selector),
